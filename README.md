@@ -1,3 +1,21 @@
+
+sorry for my broken english ：
+
+here is my personal theme modify ,share to our hfs3 friends , some logo or my workshop nane inside just remove or change that if you wish is free and no copyright at all. (i just made and use in local router pack to apps for fun )
+
+i been mod alot thing inside for vi ,just share and dont waste it ~ha ha
+
+if pack too big just delete the images then or replace other smaller sample image .
+
+other things just for refrence and replace , fit for the theme vi .
+i mode it just fit for cellphone and computer .
+additonal custom html spr&css just list in the README.md inside .
+
+thanks rejetto again for build that great project
+
+
+
+
 custom htmls
 
 
