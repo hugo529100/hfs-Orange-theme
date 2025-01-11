@@ -12,8 +12,18 @@ i mode it just fit for cellphone and computer .
 additonal custom html spr&css just list in the README.md inside .
 
 thanks rejetto again for build that great project
+![401752330-180a37bc-9b0b-4707-bc63-8cccc4ef80d3](https://github.com/user-attachments/assets/2214a255-b48f-4012-9907-645863c81c8d)
+![401752357-6262864e-0d60-4208-a1c6-d9deeb7eb1db](https://github.com/user-attachments/assets/f7135a50-ea94-4a34-86bb-2cea23a017f8)
+![401752376-2cd92be6-3400-4322-8a0e-1021daa82397](https://github.com/user-attachments/assets/19ae7dd5-b604-430c-883c-55b3e904386a)
+![401752361-667ab289-051a-49ac-a42b-f52c88697044](https://github.com/user-attachments/assets/baf6901c-6233-4846-8a53-aaed69cf7e6e)
+![401752367-f11ed76b-e555-48e3-bb7f-671f60ae9854](https://github.com/user-attachments/assets/6c4e09e5-a314-4827-b759-7e8bc9a214c9)
+![401752370-0bf17ddd-19e3-4b2d-bd69-98ef20ea7383](https://github.com/user-attachments/assets/71a05c15-c854-46bc-b274-3524f6f64886)
 
 
+
+
+
+======================================================================
 
 
 custom htmls
