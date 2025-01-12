@@ -19,14 +19,14 @@ thanks rejetto again for build that great project
 ![401752367-f11ed76b-e555-48e3-bb7f-671f60ae9854](https://github.com/user-attachments/assets/6c4e09e5-a314-4827-b759-7e8bc9a214c9)
 ![401752370-0bf17ddd-19e3-4b2d-bd69-98ef20ea7383](https://github.com/user-attachments/assets/71a05c15-c854-46bc-b274-3524f6f64886)
 
-
-
+======================================================================
+keep going upadte with my daily using
 2025/01/12 a bit more fix, just like the little pages tab when files up above 1000 or more , web page load on cell phone ,the buttom tabs would warp over left side ,then just fix out.  thumbnails and icons improve size ,files names fix....
 
 ======================================================================
 
 
-custom htmls
+custom htmls need (include readme.md)
 
 
 =================style=====================
