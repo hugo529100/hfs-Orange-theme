@@ -35,5 +35,5 @@ a bit more fix, just like the little pages tab when files up above 1000 or more 
 ======================================================================
 
 
-custom htmls css need (include readme.md)
+custom htmls css needed
 
