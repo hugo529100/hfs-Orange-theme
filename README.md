@@ -37,3 +37,7 @@ a bit more fix, just like the little pages tab when files up above 1000 or more 
 
 custom htmls css needed
 
+
+the addtional thing:
+hfs-Orange-theme/other style css/Windows11ORANGE.theme
+that is the window11 system style for mach all the vi to orange , good for look (fit for my lab style)
