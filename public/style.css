@@ -21,9 +21,9 @@ body p,h1,h2,h3,h4,h5,h6,input{
       background-color: var(--button-bg);
       border: 1px solid var(--faint-contrast);
       margin: 1px 2px auto;
-      /*margin-right:0.2em;*/
+      margin-right:0.01em;/*路徑按鈕間隙*/
       display: inline-block;
-      min-width: 40px;
+      min-width: 10px;
       text-align: center;
       text-shadow: 0px 0px 2px var(--bg);
       word-break: break-word;
@@ -107,13 +107,13 @@ body p,h1,h2,h3,h4,h5,h6,input{
       color:#b88;
       background-color:#623
      }
+     /*admin按鈕*/
      :root .theme-dark button.toggled {
       text-shadow: 0 0 4px  var(--good-contrast);
       color:var(--button-text) 
-  /*admin按鈕*/
      }
      :root .theme-light button.toggled {
-        text-shadow: 0 0 4px  var(--good-contrast);
+        text-shadow: 0 0 4px  var(--faint-contrast);
         color: var(--button-text);
     }
      :root .toggled {
@@ -198,6 +198,8 @@ body p,h1,h2,h3,h4,h5,h6,input{
   
   #root>div {
       max-width: 100%;
+    text-align: left;/*center會影響文件文字間距*/
+    
   }
   /*.list-wrapper {
       max-width: 100%;
@@ -210,29 +212,29 @@ body p,h1,h2,h3,h4,h5,h6,input{
       display:flex;
       flex-direction:column
      }*/
-  ul.dir {
+  ul.dir {/*小播放按鈕 時間日期 標簽*/
       flex: 1;  
       padding: 1px;
+      overflow: hidden;
       margin: auto;
-      min-width: 98%;
-      max-width: 98%;
+      min-width: 99%;
+      max-width: 99%;
       font-size: 14px;
-      text-shadow: 0px 0px 2px var(--bg);
+      /*text-shadow: 0px 0px 2px var(--bg);*/
   }
   
-  /*ul.dir li {
+  ul.dir li {/*小圖標列表*/
       display: block;
-      min-height:2em;
+      min-height:1.6em;
       list-style-type: none;
-      margin:15px;
-      padding: .1em .2em .2em;
-  }*/
+      padding: .1em;/*列表橫向間距*/
+  }
   
   ul.dir li:nth-of-type(odd) {
       background-color:#5050500c;
      }
      ul.dir li input[type=checkbox] {
-      margin-right:1em
+      margin-right:0.8em
      }
      @media (hover: none) {
       ul.dir li .link-wrapper .popup-menu-button {
@@ -260,6 +262,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
      ul.dir li .link-wrapper a img.icon {
       vertical-align:bottom;
       position:relative;
+      align-items:center;/*後加*/
       top:1px
      }
      ul.dir li .link-wrapper a:hover {
@@ -269,7 +272,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       float:right;
       padding-top:.3em;
       display:flex;
-      align-items:center
+      align-items:center;
      }
      ul.dir li .entry-panel .file-menu-button {
       margin:-3px 0 -3px .4em
@@ -278,7 +281,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       color:#6e6e6e;/*附加时间内容颜色*/
       font-size:70%;
       margin-left:4px;
-      /*font-variant-numeric:tabular-nums*/
+      /*font-variant-numeric:tabular-nums; 什麽玩意？*/
      }
      ul.dir li .entry-panel .entry-details .entry-size-unit {
       margin-left:.3em
@@ -298,11 +301,9 @@ body p,h1,h2,h3,h4,h5,h6,input{
       margin-left:calc(50% - 1em);
       opacity:.9
      }
-  .entry-comment {
-      display:inline;
-      white-space:pre-wrap;
-      word-break:break-word;
+  .entry-comment {/*小標簽*/
       font-size:10px;
+      color: rgb(121, 121, 121);
      }
  
      .entry-comment:after {
@@ -382,7 +383,11 @@ body p,h1,h2,h3,h4,h5,h6,input{
       margin-top:.2em;
       border-radius:.6em 0
      }
+    /*下頁面導航按鈕*/
      #paging {
+        align-items: center;
+        overflow: auto;
+        margin: 10px;
       position:sticky;
       bottom:0;
       display:flex;
@@ -394,7 +399,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       z-index:1
      }
      #paging button {
-      text-shadow: 0px 0px 2px var(--bg);
+      text-shadow:2px var(--bg);
      }
      #paging #paging-middle {
       padding:0 .4em;
@@ -414,7 +419,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       background:var(--button-bg);
       text-align:center;
       white-space:nowrap;
-      padding:.2em
+      padding:.1em
      }
      .upload-toolbar {
       position:sticky;
@@ -492,7 +497,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
      .file-dialog-properties dd {
       margin-left:1.5em
      }
-     .file-menu {
+     .file-menu {/*文件詳細頁面*/
       margin-top:1em;
       padding-top:1em;
       border-top:1px solid var(--faint-contrast);
@@ -525,18 +530,19 @@ body p,h1,h2,h3,h4,h5,h6,input{
       align-items:center;
       gap:.5em
      }
+     /*大圖標間距*/
      .tiles-mode {
       max-width:none;
-      --tile-size: 5;
+      --tile-size: 2;
       --name-lines: 3;
-      --name-height: calc(4.7em + var(--tile-size) * 1.2em + 1.2em * var(--name-lines));
+      --name-height: calc(1.7em + var(--tile-size) *1.6em + 1.6em * var(--name-lines));/*縮略圖文件名*/
       --tile-width: calc(5em + 0.7em * var(--tile-size))
      }
      .tiles-mode ul.dir {
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(var(--tile-width),1fr));
       grid-auto-rows:calc(var(--name-height) + 1.3em);
-      gap:0 20px;
+      gap:0 10px;
      }
      .tiles-mode ul.dir li {
       text-align:center;
@@ -552,7 +558,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       display:block;
       display:-webkit-box;
       overflow:hidden;
-      /*-webkit-line-clamp:calc(var(--name-lines) + 1);*/
+      -webkit-line-clamp:calc(var(--name-lines) + 1);/*文件名行數？*/
       -webkit-box-orient:vertical
      }
      .tiles-mode ul.dir li .link-wrapper a:last-of-type {
@@ -562,12 +568,12 @@ body p,h1,h2,h3,h4,h5,h6,input{
       display:block
      }
      .tiles-mode ul.dir li .link-wrapper a .icon.icon {
-      font-size:calc(1.4rem + .6rem * var(--tile-size))
+      font-size:calc(1.4rem + .7rem * var(--tile-size))/*縮略圖占比*/
      }
      .tiles-mode ul.dir li .link-wrapper a img.icon {
       width:auto;
-      height:1em;
-      padding:.1em 0
+      height:1.4em;/*縮略圖占比*/
+      padding:.01em
      }
      .tiles-mode ul.dir li .link-wrapper a .icon {
       font-size:4rem;
@@ -614,7 +620,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
      }
      .tiles-mode ul.dir li:hover .link-wrapper,
      .tiles-mode ul.dir li:hover .entry-panel {
-      z-index:1;
+      z-index:0;
       background:var(--bg)
      }
      .tiles-mode ul.dir li:hover input[type=checkbox] {
@@ -655,7 +661,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       align-items:center
      }
      #root .file-show .showing {
-      max-width:calc(100% - var(--nav-size) * 0.1);
+      /*留邊縫修正max-width:calc(100% - var(--nav-size) * 0.1);*/
       /*min-width:100%;*/
       max-height:100%
      }
@@ -790,6 +796,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
    border-color:transparent;
    outline:1px solid var(--button-text)
   }
+
   @media (min-width: 1900px) {
       #player {
           position: fixed;
@@ -805,7 +812,6 @@ body p,h1,h2,h3,h4,h5,h6,input{
           z-index: 1;
           }
   }
-  
   #player-title {
       color: var(--button-text);
       padding: .5em 1em;
@@ -927,7 +933,6 @@ body p,h1,h2,h3,h4,h5,h6,input{
    align-items:center;
     width: 50%
   }
-  
 
      .breadcrumb:nth-child(-n+3) .icon {
       padding:0 .2em
@@ -984,7 +989,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       flex-direction:column;
       justify-content:center;
       border: 1px solid var(--button-text);
-      overflow: visible;
+      /*overflow: visible;*/
       font-size: 90%
      }
      /*.dialog::after {
