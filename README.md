@@ -21,7 +21,7 @@ thanks rejetto again for build that great project
 
 
 
-
+2025/01/12 a bit more fix, just like the little pages tab when files up above 1000 or more , web page load on cell phone ,the buttom tabs would warp over left side ,then just fix out.  thumbnails and icons improve size ,files names fix....
 
 ======================================================================
 
