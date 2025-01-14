@@ -29,12 +29,11 @@ thanks rejetto again for build that great project
 keep going upadte with my daily using （love that hfs3 system so much , manage all file quick and easy, spelly for busy man, laptop now become to a BTtools and  server, and almost everythig i need just on cellphone can handle it,throuh the hfs system ）
 
 2025/01/12 
-
 a bit more fix, just like the little pages tab when files up above 1000 or more , web page load on cell phone ,the buttom tabs would warp over left side ,then just fix out.  thumbnails and icons improve size ,files names fix....
 
 2025/01/12 
-
 fix the paging max-weith to 70%
+
 ======================================================================
 
 
