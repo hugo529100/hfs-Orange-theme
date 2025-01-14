@@ -32,6 +32,9 @@ keep going upadte with my daily using （love that hfs3 system so much , manage 
 
 a bit more fix, just like the little pages tab when files up above 1000 or more , web page load on cell phone ,the buttom tabs would warp over left side ,then just fix out.  thumbnails and icons improve size ,files names fix....
 
+2025/01/12 
+
+fix the paging max-weith to 70%
 ======================================================================
 
 
