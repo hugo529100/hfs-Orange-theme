@@ -666,7 +666,8 @@ body p,h1,h2,h3,h4,h5,h6,input{
      }
      #root .file-show .showing {
       /*留邊縫修正max-width:calc(100% - var(--nav-size) * 0.1);*/
-      min-width:100%;
+      z-index: 0;
+      max-width:96.5%;
       max-height:100%
      }
      #root .file-show audio.showing {
@@ -711,7 +712,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       color: rgb(129, 129, 129);
       user-select:none;
       transition:opacity .1s;
-      z-index:10
+      z-index:100
      }
      #root .file-show .nav:hover {
       opacity:.2
