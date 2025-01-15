@@ -1,0 +1,153 @@
+[beforeHeader]
+<!-- banner范围限制 
+<style> 
+#banner img{
+  top:1 px;
+  height:200px;
+  width: 100%;
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+   }
+</style>
+-->
+ 
+<!-- 原版固定图片
+<div id="banner">
+<img src="/images/13.png"></img>
+</div>
+ -->
+
+<!-- banner随机图片限制 -->
+<style>
+#randomImage {
+  opacity: 0;
+  border: 1px solid var(--faint-contrast);
+  border-radius: 0.4em;
+  top:10 px;
+  height:190px;
+  width: 100%;
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 5.5s ease-in-out;
+    }
+</style>
+
+<!-- banner随机图片路径 -->
+<div id="banner">
+<img id="randomImage" src="" alt="Random Image">
+    <script>
+        var images = [
+            '/images/18.jpg',
+            '/images/19.jpg',
+            '/images/20.jpg',
+            '/images/21.jpg',
+            '/images/22.jpg',
+            '/images/23.jpg',
+            '/images/24.jpg',
+            '/images/25.jpg',
+            '/images/26.jpg',
+        ];
+    </script>
+</div>
+
+
+<!-- banner随机图片脚本 -->
+<script>
+    var imgElement = document.getElementById('randomImage');
+    function setRandomImage() {
+        var randomIndex = Math.floor(Math.random() * images.length);
+        imgElement.src = images[randomIndex];
+        imgElement.style.opacity = 1;
+    }
+    imgElement.onload = function() {
+        imgElement.style.opacity = 1;
+    }
+    imgElement.style.opacity = 0;
+    setRandomImage();
+</script>
+
+
+<!-- 每次刷新触发随机图 -->
+<script>
+    window.onload = function() {
+        document.getElementById('randomImage').src = getRandomImage();
+    }
+</script>
+
+
+
+<!-- 複製鏈接 -->
+<script>
+    HFS.onEvent('fileMenu', ({ entry }) => ({
+      label: "Copy link",
+      async onClick() { 
+        copy(location.origin + entry.uri)
+        HFS.dialogLib.alertDialog("Link copied")
+      }
+    }))
+
+function copy(x) { const d = document; const ta = d.createElement("textarea"); ta.textContent = x; d.body.appendChild(ta); ta.select();  d.execCommand("copy"); d.body.removeChild(ta) }
+</script>
+
+<!-- 文件列表觸發 
+<script>
+document.addEventListener('click', ({ target: t }) => {
+  if (t.tagName === 'LI' && t.closest('ul.dir'))
+      t.querySelector('a')?.click()
+})
+</script>
+-->
+
+[afterHeader]
+<style>
+.list-wrapper { max-width: 70em;margin-right: auto;margin-left: auto;}
+</style>
+
+[footer]
+<style> 
+.footer-w3l p {
+    font-size: 10px;
+    position: relative;
+    height: 4px;
+    object-position: center;
+    text-align:center;
+    max-width: 93em;
+    margin-right: auto;
+    margin-left: auto;
+}
+</style>
+
+<style> 
+.footer-w3l a {
+    font-size: 8px;
+}
+</style>
+
+<div class="footer-w3l">
+	<p>｛紫雲古琴斵製技藝坊｝<a ="_blank" href="https://luthier.blog/">THE GUQIN LUTHIERY & WORKSHOP. SINCE 2014. </a></p>
+		<p>Copyright &copy; 2024. ZIYUN GUQIN LUTHIERY. All rights reserved.</p>
+</div>
+
+[top]
+<style type="text/css">
+     
+   html {
+    zoom: 1.0; /*整個頁面縮放比例*/  
+  }
+ </style>
+ 
+ 
+<style>
+.breadcrumb:nth-of-type(2) { display: true }; /*禁用主页按钮*/
+</style>
+
+<style>
+.breadcrumb:nth-of-type(1) { display: true }; /*禁用返回按钮*/
+</style>
+
+<style>
+#login-options { display: true }; /*禁用登錄允許IP變動*/
+</style>
+
