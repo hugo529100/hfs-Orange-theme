@@ -34,6 +34,8 @@ a bit more fix, just like the little pages tab when files up above 1000 or more 
 2025/01/12 
 fix the paging max-weith to 70%
 
+2025/01/15
+fix alot bug 
 ======================================================================
 
 
