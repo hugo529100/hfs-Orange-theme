@@ -37,6 +37,8 @@ fix the paging max-weith to 70%
 2025/01/15
 fix alot bugs and look a bit better
 
+2025/01/20
+more details fix and adjust.
 
 
 ======================================================================
