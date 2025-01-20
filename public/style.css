@@ -141,8 +141,8 @@ body p,h1,h2,h3,h4,h5,h6,input{
       background-image: -webkit-gradient(linear, left top, left bottom, from(#1b1a19), color-stop(10%, #1b1a19), to(#1b1a19));
       background-image: linear-gradient(#1b1a19, #1b1a19 10%, #1b1a19);
       background-repeat: no-repeat;
-      /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff484e55', endColorstr='#ff313539', GradientType=0);*/
-      -webkit-filter: none;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff484e55', endColorstr='#ff313539', GradientType=0);
+      -webkit-filter: none;*/
       filter: none;
       font-size: 14px;
       top: 0;
@@ -168,7 +168,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       white-space:nowrap;
       margin-right:.5em
      }
-     .before-sliding {
+ /*    .before-sliding {
       width:0!important;
       flex:0!important;
       margin:0!important;
@@ -186,7 +186,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
      .ani-working {
       animation:1s blink infinite
      }
-  
+  */
   
   #root {
       max-width: 100%;
@@ -202,14 +202,14 @@ body p,h1,h2,h3,h4,h5,h6,input{
     text-align: left;/*center會影響文件文字間距*/
     text-overflow: ellipsis;
   }
-  .list-wrapper {/*文件列表外框架*/
+  .list-wrapper {/*整個文件列表外框架*/
       max-width: 100%;
       min-height: 105vh;
       background-color: var(--bg);
-      border: 1px solid var(--faint-contrast);
+      border: 1px solid rgba(58, 58, 58, 0.205);
       border-radius: 0.5em;
-      padding: 0em;
-      margin:0.5vh 0vw 0vh 0vw;
+      padding: 0.2em;
+      margin:vh vw vh vw;
       display:flex;
       flex-direction:column
      }
@@ -603,7 +603,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       justify-content:center;
       font-size:10pt
      }
-     .tiles-mode ul.dir li .entry-details {
+     .tiles-mode ul.dir li {
       font-size:80%
      }
      .tiles-mode ul.dir li.page-separator:before {
@@ -651,12 +651,11 @@ body p,h1,h2,h3,h4,h5,h6,input{
       z-index:1
      }
      #root .file-show {
-      --nav-size: min(25vh, 25vw)/* --nav-size: min(25vh, 25vw)*/
+      --nav-size: min(25vh, 25vw, 13em)/* --nav-size: min(25vh, 25vw)*/
      }
-     #root .file-show>div {
-      height:100%;
-      width:100%
-     }
+        .fullWidth {
+        .showing-container, .showing { width: 100%; }
+    }
      #root .file-show .showing-container {
       width:100%;
       height:100%;
@@ -667,7 +666,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
      #root .file-show .showing {
       /*留邊縫修正max-width:calc(100% - var(--nav-size) * 0.1);*/
       z-index: 0;
-      max-width:96.5%;
+      max-width:100%;
       max-height:100%
      }
      #root .file-show audio.showing {
@@ -721,21 +720,18 @@ body p,h1,h2,h3,h4,h5,h6,input{
       opacity:0
      }
      #root .file-show .bar {
-      padding:.5em 0.5em;
+      padding:.2em;
       background:var(--bg);
       opacity:.8;
       display:flex;
       flex-wrap:wrap;
       align-items:center;
       justify-content:flex-end;
-      gap:.5em 1.5em
-     }
-     #root .file-show .bar .entry-details {
-        font: size 50%;
+      gap:.2em .2em
      }
      #root .file-show .bar .entry-ts {
       display:inherit;
-      font: size 50%;
+      font: size 8px;
      }
      #root .file-show .bar .entry-size:after {
       display:none
@@ -761,10 +757,17 @@ body p,h1,h2,h3,h4,h5,h6,input{
       backdrop-filter:blur(2px);
       transition: all 0.25s ease;
   }
-  
-  .breadcrumb:nth-child(-n+3) .icon {/*home鍵 返回鍵*/
-    padding:0 .2em;
-    font-size:100%
+  /*.breadcrumb:nth-child(-n+3) .icon { */
+  .breadcrumb:nth-child(-n+3) {/*home鍵 返回鍵*/
+    padding:.1em .3em;
+    font-size:14px;
+    text-decoration: none;
+    border-radius: .3em;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid var(--faint-contrast);
+    backdrop-filter:blur(2px);
+    transition: all 0.25s ease;
    }
   button:hover {
       background-color: var(--button-text);
@@ -841,10 +844,9 @@ body p,h1,h2,h3,h4,h5,h6,input{
   input:not([type=checkbox],
   [type=range]),
   select,
-  textarea {
+  textarea {  /*輸入框選項框内框*/
    padding:.3em .4em;
-   border-radius:.5em;
-   /*輸入框内框*/
+   border-radius:.4em;
    background:var(--button-bg);
    border-color:var(--good-contrast);
    color:var(--good-contrast);
