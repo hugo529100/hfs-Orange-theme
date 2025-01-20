@@ -1,36 +1,27 @@
 [beforeHeader]
-<!-- banner范围限制 
-<style> 
-#banner img{
-  top:1 px;
-  height:200px;
-  width: 100%;
-  position: relative;
-  object-fit: cover;
-  object-position: center;
-   }
+<style>
+.list-wrapper { 
+max-width: 70em;
+margin-right: auto;
+margin-left: auto;
+}
 </style>
--->
- 
-<!-- 原版固定图片
-<div id="banner">
-<img src="/images/13.png"></img>
-</div>
- -->
+
 
 <!-- banner随机图片限制 -->
 <style>
 #randomImage {
   opacity: 0;
-  border: 1px solid var(--faint-contrast);
+  border: 2px solid var(--faint-contrast);
   border-radius: 0.4em;
-  top:10 px;
   height:190px;
   width: 100%;
   position: relative;
   object-fit: cover;
-  object-position: center;
-  transition: opacity 5.5s ease-in-out;
+  object-position: left;
+  align-items: left;
+  margin-left: -2.16px;
+  transition: opacity 0.5s ease-in-out;
     }
 </style>
 
@@ -48,6 +39,10 @@
             '/images/24.jpg',
             '/images/25.jpg',
             '/images/26.jpg',
+            '/images/27.jpg',
+            '/images/28.jpg',
+            '/images/29.jpg',
+            '/images/30.jpg',
         ];
     </script>
 </div>
@@ -76,9 +71,27 @@
     }
 </script>
 
-
+<!-- banner范围限制 
+<style> 
+#banner img{
+  top:1 px;
+  height:200px;
+  width: 100%;
+  position: relative;
+  object-fit: cover;
+  object-position: center;
+   }
+</style>
+-->
+ 
+<!-- 原版固定图片
+<div id="banner">
+<img src="/images/13.png"></img>
+</div>
+ -->
 
 <!-- 複製鏈接 -->
+<!--
 <script>
     HFS.onEvent('fileMenu', ({ entry }) => ({
       label: "Copy link",
@@ -90,6 +103,8 @@
 
 function copy(x) { const d = document; const ta = d.createElement("textarea"); ta.textContent = x; d.body.appendChild(ta); ta.select();  d.execCommand("copy"); d.body.removeChild(ta) }
 </script>
+-->
+
 
 <!-- 文件列表觸發 
 <script>
@@ -99,11 +114,6 @@ document.addEventListener('click', ({ target: t }) => {
 })
 </script>
 -->
-
-[afterHeader]
-<style>
-.list-wrapper { max-width: 70em;margin-right: auto;margin-left: auto;}
-</style>
 
 [footer]
 <style> 
@@ -150,4 +160,6 @@ document.addEventListener('click', ({ target: t }) => {
 <style>
 #login-options { display: true }; /*禁用登錄允許IP變動*/
 </style>
+
+
 
