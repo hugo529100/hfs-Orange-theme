@@ -40,7 +40,8 @@ fix alot bugs and look a bit better
 2025/01/20
 more details fix and adjust.
 
-
+2025/02/08
+a bit fix ,and use AI-coding for rewrite the header banner pictue in Lazyload ,it a bit faster for load .
 ======================================================================
 
 
