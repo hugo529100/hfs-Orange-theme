@@ -7,10 +7,9 @@ margin-left: auto;
 }
 </style>
 
-
-<!-- banner随机图片限制 -->
-<style>
-#randomImage {
+<!-- banner范围限制-->
+<style> 
+#banner img{
   opacity: 0;
   border: 2px solid var(--faint-contrast);
   border-radius: 0.4em;
@@ -18,18 +17,34 @@ margin-left: auto;
   width: 100%;
   position: relative;
   object-fit: cover;
-  object-position: left;
+  object-position: center;
   align-items: left;
   margin-left: -2.16px;
-  transition: opacity 0.5s ease-in-out;
-    }
+  transition: opacity 0.4s ease-in-out;
+   }
 </style>
 
-<!-- banner随机图片路径 -->
+
 <div id="banner">
-<img id="randomImage" src="" alt="Random Image">
-    <script>
-        var images = [
+<img id="randomImage" data-src="" alt="Random Image" loading="lazy">
+</div>
+
+<script>
+    // 初始化Intersection Observer实现懒加载
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (!img.src) {
+                    loadRandomImage(img);
+                }
+                observer.unobserve(img); // 加载后停止观察
+            }
+        });
+    });
+
+    // 图片数组
+    const images = [
             '/images/18.jpg',
             '/images/19.jpg',
             '/images/20.jpg',
@@ -40,80 +55,67 @@ margin-left: auto;
             '/images/25.jpg',
             '/images/26.jpg',
             '/images/27.jpg',
-            '/images/28.jpg',
             '/images/29.jpg',
             '/images/30.jpg',
-        ];
-    </script>
-</div>
+    ];
 
+    // 图片元素
+    const imgElement = document.getElementById('randomImage');
 
-<!-- banner随机图片脚本 -->
-<script>
-    var imgElement = document.getElementById('randomImage');
-    function setRandomImage() {
-        var randomIndex = Math.floor(Math.random() * images.length);
-        imgElement.src = images[randomIndex];
-        imgElement.style.opacity = 1;
+    // 初始化设置
+    function initLazyLoad() {
+        // 预存随机图片路径到data-src
+        imgElement.dataset.src = getRandomImage();
+        // 开始观察元素
+        observer.observe(imgElement);
     }
-    imgElement.onload = function() {
-        imgElement.style.opacity = 1;
+
+    // 实际加载图片
+    function loadRandomImage(imgElement) {
+        imgElement.src = imgElement.dataset.src;
+        imgElement.style.opacity = 0;
+        imgElement.onload = () => {
+            imgElement.style.opacity = 1;
+        }
     }
-    imgElement.style.opacity = 0;
-    setRandomImage();
+
+    // 获取随机图片路径
+    function getRandomImage() {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        return images[randomIndex];
+    }
+
+    // 启动懒加载
+    initLazyLoad();
 </script>
 
+[afterMenuBar]
+<style>
+#refreshButton {
+padding: 6px 10px;
+ font-size: 14px;
+}
 
-<!-- 每次刷新触发随机图 -->
-<script>
-    window.onload = function() {
-        document.getElementById('randomImage').src = getRandomImage();
-    }
-</script>
-
-<!-- banner范围限制 
-<style> 
-#banner img{
-  top:1 px;
-  height:200px;
-  width: 100%;
-  position: relative;
-  object-fit: cover;
-  object-position: center;
-   }
 </style>
--->
- 
-<!-- 原版固定图片
-<div id="banner">
-<img src="/images/13.png"></img>
-</div>
- -->
 
-<!-- 複製鏈接 -->
-<!--
+<!-- 在頁面任意位置添加這個按鈕 -->
+<button id="refreshButton" title="刷新頁面">♻</button>
+
+
 <script>
-    HFS.onEvent('fileMenu', ({ entry }) => ({
-      label: "Copy link",
-      async onClick() { 
-        copy(location.origin + entry.uri)
-        HFS.dialogLib.alertDialog("Link copied")
-      }
-    }))
-
-function copy(x) { const d = document; const ta = d.createElement("textarea"); ta.textContent = x; d.body.appendChild(ta); ta.select();  d.execCommand("copy"); d.body.removeChild(ta) }
-</script>
--->
-
-
-<!-- 文件列表觸發 
-<script>
+// 現有點擊事件代碼保持不變
 document.addEventListener('click', ({ target: t }) => {
-  if (t.tagName === 'LI' && t.closest('ul.dir'))
-      t.querySelector('a')?.click()
+  if (t.tagName === 'LI' && t.closest('ul.dir')) {
+    t.querySelector('a')?.click()
+  }
+})
+
+// 新增刷新功能
+document.getElementById('refreshButton').addEventListener('click', () => {
+  location.reload()  // 強制刷新頁面
+  // 如果只需要普通刷新可以用 location.reload(false)
 })
 </script>
--->
 
 [footer]
 <style> 
@@ -160,6 +162,4 @@ document.addEventListener('click', ({ target: t }) => {
 <style>
 #login-options { display: true }; /*禁用登錄允許IP變動*/
 </style>
-
-
 
