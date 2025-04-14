@@ -1,47 +1,7 @@
-/*
-    @import url("/images/RUIZIYUNZIKUXIYUANTIGBK-1.TTF");
-    @font-face {
-      font-family: "CloudYuanXiGBK";
-      src: local("CloudYuanXiGBK") format('truetype');
-       url("/images/RUIZIYUNZIKUXIYUANTIGBK-1.TTF") format('truetype');
-    }
-    body p,h1,h2,h3,h4,h5,h6,input{
-	font-family: "CloudYuanXiGBK";
-}
-body p,h1,h2,h3,h4,h5,h6,input{
-	font-family: "CloudYuanXiGBK";
-}
-*/
-
-  .breadcrumb {
-    padding:.2em .6em .2em;
-    line-height:1.8em;
-    border-radius:.3em;
-    color:var(--button-text); /*日間home按鈕*/
-      background-color: var(--button-bg);
-      border: 1px solid var(--faint-contrast);
-      margin: 1px 2px auto;
-      margin-right:0.01em;/*路徑按鈕間隙*/
-      display: inline-block;
-      min-width: 10px;
-      text-align: center;
-      text-shadow: 0px 0px 2px var(--bg);
-      word-break: break-word;
-      transition: all 0.25s ease;
-      backdrop-filter:blur(2px);
-      z-index: 0;
-      font-size: 14px;
-  }
-
-   
- .breadcrumb:hover {
-      background-color: var(--button-bg-hover);
-      text-shadow: 0px 0px 1px var(--bg);
-  } 
 
   
   :root {
-      height: 100dvh;
+      /*height: 100dvh;*/
       --bg: #ffffffd8;
       --text: #1b1713e1;
       --background: #ffffffd8;
@@ -56,18 +16,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       --focus-color: #1b1713e1;
       --separator: " – "
   }
-  @supports (content: ""/"") {
-   :root {
-    --separator: " – " / ""
-   }
-  }
-  /*
-  #preview-content {
-      background: #18181b;
-      border: 19px solid #27272a;
-      padding: 2em 2em;
-      border-radius: 0.5em;
-    }*/
+
   :root .theme-dark {
       --bg: #0b0a09ab;
       --text: #ff9900;
@@ -76,7 +25,8 @@ body p,h1,h2,h3,h4,h5,h6,input{
       --button-text: #ff9900;
       --button-bg: #16141180;
       color-scheme: dark;
-      --ghost-contrast: rgba(38, 38, 38, 0.288);
+      --ghost-contrast: rgba(38, 38, 38, 0.18);
+      --faint-contrast: rgba(58, 58, 58, 0.64);
       background-color:#0b0a09; 
       --focus-color: #ff9900;
 
@@ -124,9 +74,9 @@ body p,h1,h2,h3,h4,h5,h6,input{
       background-size: contain;
       background-color:var(--bg);
       margin:0;
-      /*font-family:poppins;
+      font-family:poppins;
       -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale*/
+      -moz-osx-font-smoothing:grayscale
   }
   /*body,
   button,
@@ -168,26 +118,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       white-space:nowrap;
       margin-right:.5em
      }
- /*    .before-sliding {
-      width:0!important;
-      flex:0!important;
-      margin:0!important;
-      height:0!important;
-      padding:0!important;
-      overflow:hidden!important;
-      transition:flex .5s
-     }
-     .show-sliding {
-      transition:flex .5s;
-      overflow:clip;
-      flex:1;
-      white-space:nowrap
-     }
-     .ani-working {
-      animation:1s blink infinite
-     }
-  */
-  
+
   #root {
       max-width: 100%;
       margin: auto;
@@ -198,21 +129,58 @@ body p,h1,h2,h3,h4,h5,h6,input{
   }
   
   #root>div {
-      max-width: 100%;
+    max-width: 100%;
     text-align: left;/*center會影響文件文字間距*/
     text-overflow: ellipsis;
   }
   .list-wrapper {/*整個文件列表外框架*/
       max-width: 100%;
-      min-height: 105vh;
+      min-height: 98vh;
       background-color: var(--bg);
-      border: 1px solid rgba(58, 58, 58, 0.205);
+      border: 1px solid var(--ghost-contrast);;
       border-radius: 0.5em;
       padding: 0.2em;
       margin:vh vw vh vw;
       display:flex;
       flex-direction:column
      }
+     
+  .breadcrumb {
+    padding:.2em .6em .2em;
+    line-height:1.8em;
+    border-radius:.3em;
+    color:var(--button-text); /*日間home按鈕*/
+      background-color: var(--button-bg);
+      border: 1px solid var(--faint-contrast);
+      margin: 1px 2px auto;
+      margin-right:0.01em;/*路徑按鈕間隙*/
+      display: inline-block;
+      min-width: 10px;
+      text-align: center;
+      text-shadow: 0px 0px 2px var(--bg);
+      word-break: break-word;
+      transition: all 0.25s ease;
+      backdrop-filter:blur(2px);
+      z-index: 0;
+      height: 25px;
+  }
+  /*.breadcrumb:nth-child(-n+3) .icon { */
+  .breadcrumb:nth-child(-n+3)  {/*home鍵 返回鍵*/
+    padding:.2em;
+    text-decoration: none;
+    border-radius: .3em;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid var(--faint-contrast);
+    backdrop-filter:blur(2px);
+    transition: all 0.25s ease;
+   }
+
+ .breadcrumb:hover {
+      background-color: var(--button-bg-hover);
+      text-shadow: 0px 0px 1px var(--bg);
+  } 
+
   ul.dir {/*小播放按鈕 時間日期 標簽*/
       flex: 1;  
       padding: 1px;
@@ -228,13 +196,15 @@ body p,h1,h2,h3,h4,h5,h6,input{
       display: block;
       min-height:1.8em;
       list-style-type: none;
-      padding: .1em;/*列表上下間距*/
+      padding: .2em;/*列表上下間距*/
+      border-bottom: 0.5px solid var(--faint-contrast);/*下劃綫*/
   }
   
   ul.dir li:nth-of-type(odd) {
-      background-color:#5050500c;
+      background-color:var(--ghost-contrast);
      }
      ul.dir li input[type=checkbox] {
+     	z-index: 3;
       margin-right:0.8em
      }
      @media (hover: none) {
@@ -251,7 +221,10 @@ body p,h1,h2,h3,h4,h5,h6,input{
        margin:-1em
       }
      }
-     ul.dir li .link-wrapper a:last-of-type {
+     ul.dir li .link-wrapper a:last-of-type {/*列表顯示的文件名*/
+     overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;/*以上超出則隱藏*/
       word-break:break-word;
       padding-right:.3em
      }
@@ -278,12 +251,14 @@ body p,h1,h2,h3,h4,h5,h6,input{
      ul.dir li .entry-panel .file-menu-button {
       margin:-3px 0 -3px .4em
      }
-     ul.dir li .entry-panel .entry-details {
-      color:#6e6e6e;/*附加时间内容颜色*/
-      font-size:70%;
-      margin-left:4px;
-      /*font-variant-numeric:tabular-nums; 什麽玩意？*/
-     }
+
+    ul.dir li .entry-panel .entry-details {
+	  color:var(--good-contrast);/*附加时间内容颜色*/
+    font-size: 80%;
+    margin-left: 2px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
      ul.dir li .entry-panel .entry-details .entry-size-unit {
       margin-left:.3em
      }
@@ -358,6 +333,9 @@ body p,h1,h2,h3,h4,h5,h6,input{
       cursor:inherit;
       margin-left:.4em
      }
+     button .icon {
+    margin: -.1em 0 auto;
+     }  
      .dialog-backdrop.working {
       font-size:5em;
       animation:1s fade-in
@@ -499,7 +477,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       margin-left:1.5em
      }
      .file-menu {/*文件詳細頁面*/
-        z-index: 10;
+      z-index: 10;
       margin-top:1em;
       padding-top:1em;
       border-top:1px solid var(--faint-contrast);
@@ -534,28 +512,30 @@ body p,h1,h2,h3,h4,h5,h6,input{
       align-items:center;
       gap:.5em
      }
-     /*大圖標間距*/
-     .tiles-mode {
+    
+     .tiles-mode { /*大圖標間距*/
       max-width:none;
       --tile-size: 2;
-      --name-lines: 3;
-      --name-height: calc(1.7em + var(--tile-size) *1.6em + 1.6em * var(--name-lines));/*縮略圖文件名*/
+      --name-lines: 2;
+      --name-height: calc(2.7em + var(--tile-size) *1.4em + 1.6em * var(--name-lines));/*縮略圖文件名*/
       --tile-width: calc(5em + 0.7em * var(--tile-size))
      }
      .tiles-mode ul.dir {
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(var(--tile-width),1fr));
       grid-auto-rows:calc(var(--name-height) + 1.3em);
-      gap:0 10px;
+      gap:0 3px;
      }
      .tiles-mode ul.dir li {
       text-align:center;
       position:relative;
       display:flex;
       flex-direction:column;
-      /*border-bottom:2px solid #27272a;*/
+      /*border-bottom:1px solid #27272a;*/
       overflow-x:clip;
       padding:.5em 0 0;
+      border: 1px solid var(--ghost-contrast); /*縮略圖框框*/
+      border-radius: 0.4em;
      }
      .tiles-mode ul.dir li .link-wrapper:not(:hover) {
       max-height:var(--name-height);
@@ -572,11 +552,12 @@ body p,h1,h2,h3,h4,h5,h6,input{
       display:block
      }
      .tiles-mode ul.dir li .link-wrapper a .icon.icon {
-      font-size:calc(1.4rem + .7rem * var(--tile-size))/*縮略圖占比*/
+      font-size:calc(0.7rem + .7rem * var(--tile-size))/*縮略圖占比*/
      }
      .tiles-mode ul.dir li .link-wrapper a img.icon {
-      width:auto;
-      height:1.4em;/*縮略圖占比*/
+      width:100%;
+      height:1.6em;/*縮略圖占比*/
+      object-fit: cover;/*拉滿裁切*/
       padding:.01em
      }
      .tiles-mode ul.dir li .link-wrapper a .icon {
@@ -604,7 +585,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       font-size:10pt
      }
      .tiles-mode ul.dir li {
-      font-size:80%
+      font-size:100%
      }
      .tiles-mode ul.dir li.page-separator:before {
       content:""
@@ -651,6 +632,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       z-index:1
      }
      #root .file-show {
+     font-size: 10px; /*控制預覽標題文字*/
       --nav-size: min(25vh, 25vw, 13em)/* --nav-size: min(25vh, 25vw)*/
      }
         .fullWidth {
@@ -731,7 +713,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
      }
      #root .file-show .bar .entry-ts {
       display:inherit;
-      font: size 8px;
+      /*font: size 8px;控制預覽標題文字*/
      }
      #root .file-show .bar .entry-size:after {
       display:none
@@ -757,18 +739,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
       backdrop-filter:blur(2px);
       transition: all 0.25s ease;
   }
-  /*.breadcrumb:nth-child(-n+3) .icon { */
-  .breadcrumb:nth-child(-n+3) {/*home鍵 返回鍵*/
-    padding:.1em .3em;
-    font-size:14px;
-    text-decoration: none;
-    border-radius: .3em;
-    vertical-align: middle;
-    cursor: pointer;
-    border: 1px solid var(--faint-contrast);
-    backdrop-filter:blur(2px);
-    transition: all 0.25s ease;
-   }
+  
   button:hover {
       background-color: var(--button-text);
       /*color: var(--button-bg-hover);*/
@@ -824,6 +795,7 @@ body p,h1,h2,h3,h4,h5,h6,input{
           z-index: 1;
           }
   }
+  
   #player-title {
       color: var(--button-text);
       padding: .5em 1em;
@@ -898,12 +870,17 @@ body p,h1,h2,h3,h4,h5,h6,input{
    transform:scaleX(-1)
   }
   .icon-button,
-  ul.dir li .entry-panel .file-menu-button {
-   font-size:.7em;
-   padding:.2em .4em;
-   margin-left:.4em;
-   vertical-align:bottom
+  ul.dir li .entry-panel .file-menu-button { /*文件菜單小按鈕*/
+   font-size:14px;
+   padding:.3em;
+   margin-left:.1em;
+   height: fit-content;
+   vertical-align:middle
   }
+  button.small {
+    padding: .5em;
+    height: 30px;
+}
   .error-msg {
    background-color:#faa;
    color:#833;
@@ -1089,4 +1066,41 @@ body p,h1,h2,h3,h4,h5,h6,input{
             outline: 1px dotted var(--button-text);
             outline-offset: -2px;
           }
-          
+ 
+#thumbnailsPreview { 
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index:10;
+     }
+     
+#thumbnailsPreview>* { 
+    max-height: 1000px;
+    max-width: 1000px;
+    z-index:10;
+     }
+
+.file-dialog-properties {
+    word-break: break-word;
+    line-height: 1.5em;
+    margin: 0;
+ font-size: 14px;
+}            
+  @supports (content: ""/"") {
+   :root {
+    --separator: " – " / ""
+   }
+  }
+  @supports (width: min(1px,2px)) {
+    #root .file-show {
+        --nav-size: min(25vh, 25vw, 13em);
+        font-size: 14px;/*播放器内標題*/
+    }
+}
+  /*
+  #preview-content {
+      background: #18181b;
+      border: 19px solid #27272a;
+      padding: 2em 2em;
+      border-radius: 0.5em;
+    }*/
