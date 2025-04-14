@@ -1,7 +1,7 @@
 [beforeHeader]
 <style>
 .list-wrapper { 
-max-width: 70em;
+max-width: 120em;
 margin-right: auto;
 margin-left: auto;
 }
@@ -11,82 +11,147 @@ margin-left: auto;
 <style> 
 #banner img{
   opacity: 0;
-  border: 2px solid var(--faint-contrast);
+  border: 1px solid var(--faint-contrast);
   border-radius: 0.4em;
-  height:190px;
+  height: 22vh;
   width: 100%;
   position: relative;
   object-fit: cover;
   object-position: center;
   align-items: left;
-  margin-left: -2.16px;
+  margin: -2px auto;
+  margin-left: -1.0px;
   transition: opacity 0.4s ease-in-out;
    }
 </style>
 
 
 <div id="banner">
-<img id="randomImage" data-src="" alt="Random Image" loading="lazy">
+<img id="randomImage" alt="Random Image" 
+     style="transition: opacity 0.5s;"
+     data-src="" 
+     loading="lazy">
 </div>
 
 <script>
-    // 初始化Intersection Observer实现懒加载
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (!img.src) {
-                    loadRandomImage(img);
-                }
-                observer.unobserve(img); // 加载后停止观察
-            }
-        });
+// 配置参数
+const API_ENDPOINT = '/images/banner/?get=list';
+
+// 全局状态
+let imageList = [];
+let hasLoaded = false; // 加载状态锁
+
+// 严格模式的 Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        // 多重条件验证
+        if (!hasLoaded && 
+            entry.isIntersecting && 
+            entry.intersectionRatio > 0 &&
+            !entry.target.src &&
+            imageList.length > 0) {
+            
+            loadRandomImage(entry.target);
+            hasLoaded = true; // 设置加载锁
+            observer.unobserve(entry.target);
+        }
     });
+}, {
+    rootMargin: '200px', // 提前200px监测
+    threshold: [0, 0.1, 0.5] // 多阶段触发点
+});
 
-    // 图片数组
-    const images = [
-            '/images/18.jpg',
-            '/images/19.jpg',
-            '/images/20.jpg',
-            '/images/21.jpg',
-            '/images/22.jpg',
-            '/images/23.jpg',
-            '/images/24.jpg',
-            '/images/25.jpg',
-            '/images/26.jpg',
-            '/images/27.jpg',
-            '/images/29.jpg',
-            '/images/30.jpg',
-    ];
 
-    // 图片元素
-    const imgElement = document.getElementById('randomImage');
+    
+// 主初始化函数
+async function init() {
+    try {
+        // 获取图片列表（不带缓存参数）
+        const response = await fetch(API_ENDPOINT);
+        const textData = await response.text();
+        
+        // 严格处理URL格式
+        imageList = textData.split(/\s+/g)
+            .map(url => {
+                try {
+                    return new URL(url).href; // 规范化URL
+                } catch {
+                    return null;
+                }
+            })
+            .filter(Boolean);
+        
+        if (imageList.length === 0) return;
 
-    // 初始化设置
-    function initLazyLoad() {
-        // 预存随机图片路径到data-src
-        imgElement.dataset.src = getRandomImage();
-        // 开始观察元素
+        // 高质量随机洗牌
+        shuffleArray(imageList);
+
+        // 设置初始data-src
+        const imgElement = document.getElementById('randomImage');
+        imgElement.dataset.src = imageList[0];
+        
+        // 开始观察
         observer.observe(imgElement);
+        console.log('洗牌结果:', imageList.slice(0,3));
+    } catch (error) {
+        console.error('初始化失败:', error);
     }
+}
 
-    // 实际加载图片
-    function loadRandomImage(imgElement) {
-        imgElement.src = imgElement.dataset.src;
-        imgElement.style.opacity = 0;
+// 改进的图片加载函数
+function loadRandomImage(imgElement) {
+    // 获取随机索引
+    const randomIndex = Math.floor(Math.random() * imageList.length);
+    const selectedUrl = imageList[randomIndex];
+    
+    // 显示加载过程
+    imgElement.style.opacity = 0;
+    
+    // 创建临时Image对象验证
+    const tempImage = new Image();
+    tempImage.onload = () => {
+        // 验证成功后再设置实际图片
+        imgElement.src = selectedUrl;
         imgElement.onload = () => {
             imgElement.style.opacity = 1;
+        };
+        
+        // 预加载下一张
+        preloadNextImage();
+    };
+    
+    tempImage.onerror = () => {
+        console.warn('图片验证失败:', selectedUrl);
+        imageList.splice(randomIndex, 1); // 移除非法URL
+        if (imageList.length > 0) {
+            loadRandomImage(imgElement);
         }
-    }
+    };
+    
+    tempImage.src = selectedUrl;
+}
 
-    // 获取随机图片路径
-    function getRandomImage() {
-        const randomIndex = Math.floor(Math.random() * images.length);
-        return images[randomIndex];
-    }
+// 预加载下一张图片
+function preloadNextImage() {
+    if (imageList.length < 2) return;
+    const nextIndex = Math.floor(Math.random() * imageList.length);
+    new Image().src = imageList[nextIndex];
+}
 
-    // 启动懒加载
-    initLazyLoad();
+// 优化的洗牌算法
+function shuffleArray(array) {
+    const seed = new Uint32Array(array.length);
+    crypto.getRandomValues(seed);
+    
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = seed[i] % (i + 1);
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+
+// 启动初始化
+init();
 </script>
 
 [afterMenuBar]
@@ -95,11 +160,10 @@ margin-left: auto;
 padding: 6px 10px;
  font-size: 14px;
 }
-
 </style>
 
 <!-- 在頁面任意位置添加這個按鈕 -->
-<button id="refreshButton" title="刷新頁面">♻</button>
+<!-- <button id="refreshButton" title="刷新頁面">◤</button>-->
 
 
 <script>
@@ -120,27 +184,32 @@ document.getElementById('refreshButton').addEventListener('click', () => {
 [footer]
 <style> 
 .footer-w3l p {
-    font-size: 10px;
+    font-size: 8px;
     position: relative;
-    height: 4px;
+    height: 3px;
     object-position: center;
     text-align:center;
-    max-width: 93em;
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
+    margin-top: auto;
+    color:var(--faint-contrast);
 }
-</style>
 
-<style> 
 .footer-w3l a {
     font-size: 8px;
+     color:var(--faint-contrast);
 }
+
 </style>
 
+
 <div class="footer-w3l">
-	<p>｛紫雲古琴斵製技藝坊｝<a ="_blank" href="https://luthier.blog/">THE GUQIN LUTHIERY & WORKSHOP. SINCE 2014. </a></p>
-		<p>Copyright &copy; 2024. ZIYUN GUQIN LUTHIERY. All rights reserved.</p>
+	<p>｛紫雲古琴斵製技藝坊｝THE GUQIN LUTHIERY & WORKSHOP. SINCE 2014. </p>
+		<p>www.Luthier.blog Copyright &copy; 2014. ZIYUN GUQIN LUTHIERY. All rights reserved.</p>
 </div>
+
+
 
 [top]
 <style type="text/css">
