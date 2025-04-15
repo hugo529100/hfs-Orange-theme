@@ -44,6 +44,7 @@ fit for Phones Pads PCs looking speciall for pictures album.
 this all I just use AI coding for build , it may have some bugs ,but i keep fix in my daily use.
 
 
+https://github.com/user-attachments/assets/64b57935-3fe9-4b1d-9e6e-f31ed25d3e9c
 
 
 
@@ -57,5 +58,18 @@ NEED images/banner folders on Home pges (can hide it)
 
 the addtional thing:
 hfs-Orange-theme/other style css/Windows11ORANGE.theme
-that is the window11 system style for mach all the vi to orange , good for look (fit for my lab style)
+that is the window11-10 system style for mach all the vi to orange , good for look (fit for my lab style)
+
+![Screenshot_2025-04-14-21-46-57-810_com android chrome](https://github.com/user-attachments/assets/f47fa4da-c91d-4657-81c2-05f3647ef561)
+![Screenshot_2025-04-14-21-47-03-577_com android chrome](https://github.com/user-attachments/assets/20618184-c726-4d53-8673-c2a12715caec)
+![Screenshot_2025-04-14-21-49-53-577_com android chrome](https://github.com/user-attachments/assets/7ca9ce49-1a0f-47cd-b362-47d06c6468d5)
+![Screenshot_2025-04-14-21-50-23-380_com android chrome](https://github.com/user-attachments/assets/6114941d-431a-4ccc-887e-c5e3cdba455a)
+![Screenshot_2025-04-14-21-50-11-706_com android chrome](https://github.com/user-attachments/assets/6ab7ab21-43f4-487a-8880-9f4e1ac530b3)
+![Screenshot_2025-04-14-21-50-02-201_com android chrome](https://github.com/user-attachments/assets/e4230ffc-442c-496e-8e0e-69119a05814f)
+![Screenshot_2025-04-14-21-51-14-880_com android chrome](https://github.com/user-attachments/assets/e648256c-7d7b-4cf3-80f8-dc511ded4007)
+![Screenshot_2025-04-14-21-51-11-686_com android chrome](https://github.com/user-attachments/assets/b68a2a0b-c4ec-48e7-bd8b-0a3e1f5b0270)
+![Screenshot_2025-04-14-21-51-11-686_com android chrome](https://github.com/user-attachments/assets/0fbb5f5f-e116-4b0f-825d-84b6f9834832)
+![Screenshot_2025-04-14-22-06-20-600_com android chrome](https://github.com/user-attachments/assets/b4086228-d4f7-498f-b3cd-802dab252b1f)
+![Screenshot_2025-04-14-22-07-49-844_com android chrome](https://github.com/user-attachments/assets/8ae38a50-ad13-4ff2-bc69-fc057fea7e73)
+
 
