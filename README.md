@@ -12,17 +12,7 @@ i mode it just fit for cellphone and computer .
 additonal custom html spr&css just list in the README.md inside .
 
 thanks rejetto again for build that great project
-![401752330-180a37bc-9b0b-4707-bc63-8cccc4ef80d3](https://github.com/user-attachments/assets/2214a255-b48f-4012-9907-645863c81c8d)
 
-![401752357-6262864e-0d60-4208-a1c6-d9deeb7eb1db](https://github.com/user-attachments/assets/f7135a50-ea94-4a34-86bb-2cea23a017f8)
-
-![401752376-2cd92be6-3400-4322-8a0e-1021daa82397](https://github.com/user-attachments/assets/19ae7dd5-b604-430c-883c-55b3e904386a)
-
-![401752361-667ab289-051a-49ac-a42b-f52c88697044](https://github.com/user-attachments/assets/baf6901c-6233-4846-8a53-aaed69cf7e6e)
-
-![401752367-f11ed76b-e555-48e3-bb7f-671f60ae9854](https://github.com/user-attachments/assets/6c4e09e5-a314-4827-b759-7e8bc9a214c9)
-
-![401752370-0bf17ddd-19e3-4b2d-bd69-98ef20ea7383](https://github.com/user-attachments/assets/71a05c15-c854-46bc-b274-3524f6f64886)
 
 ======================================================================
 
@@ -42,12 +32,30 @@ more details fix and adjust.
 
 2025/02/08
 a bit fix ,and use AI-coding for rewrite the header banner pictue in Lazyload ,it a bit faster for load .
+
+2025/04/15
+Additional change for details, more fit and looks better .like the titles views. 
+
+An important things is the top banner images can use hfs3 api for load in auto, just upload what your favorit picture ,then can show on pages.
+Lazyload mod can let the network transfer keep low ,and radmom-show when the page refresh. and can use Gifs and make it cool looking.~~~~
+
+fit for Phones Pads PCs looking speciall for pictures album.
+
+this all I just use AI coding for build , it may have some bugs ,but i keep fix in my daily use.
+
+
+
+
+
 ======================================================================
 
 
-custom htmls css needed
+custom htmls css needed ,replace it or copy .
+
+NEED images/banner folders on Home pges (can hide it)
 
 
 the addtional thing:
 hfs-Orange-theme/other style css/Windows11ORANGE.theme
 that is the window11 system style for mach all the vi to orange , good for look (fit for my lab style)
+
