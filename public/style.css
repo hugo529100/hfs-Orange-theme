@@ -10,7 +10,9 @@
       --faint-contrast: #7676763b;
       --faint-contrast-trans: #4343437e;
       /*--mild-contrast: rgba(77, 77, 77, 0.267);*/
+      --comment-contrast: rgba(58, 58, 58, 0.85);
       --good-contrast: rgba(36, 36, 36, 0.445);
+       --grid-contrast: rgba(48, 48, 48, 0.14);
       --button-bg: #eeeeeec7;
       --button-text: #1b1713e1;
       --focus-color: #1b1713e1;
@@ -23,18 +25,20 @@
       --good-contrast: #ff9900;
       --button-bg-hover: #16141198;
       --button-text: #ff9900;
-      --button-bg: #16141180;
+      --button-bg: #16141100;
       color-scheme: dark;
-      --ghost-contrast: rgba(38, 38, 38, 0.18);
-      --faint-contrast: rgba(58, 58, 58, 0.64);
+      --ghost-contrast: rgba(48, 48, 48, 0.18);
+      --faint-contrast: rgba(58, 58, 58, 0.65);
+      --comment-contrast: rgba(158, 158, 158, 0.65);
+      --grid-contrast: rgba(48, 48, 48, 0.48);
       background-color:#0b0a09; 
       --focus-color: #ff9900;
-
+      --text-high-contrast: #ff9900;
   }
   :root .theme-dark .highlightedText,
   :root .theme-dark .file-menu a:hover,
   :root .file-menu .theme-dark a:hover {
-   color:var(--button-text);
+   color: var(--button-text);
   }
   
   :root .theme-dark a {
@@ -135,7 +139,7 @@
   }
   .list-wrapper {/*整個文件列表外框架*/
       max-width: 100%;
-      min-height: 98vh;
+      min-height: 99vh;
       background-color: var(--bg);
       border: 1px solid var(--ghost-contrast);;
       border-radius: 0.5em;
@@ -279,7 +283,7 @@
      }
   .entry-comment {/*小標簽*/
       font-size:10px;
-      color: rgb(121, 121, 121);
+      color: var(--comment-contrast);
      }
  
      .entry-comment:after {
@@ -341,7 +345,7 @@
       animation:1s fade-in
      }
      .dialog-content {
-      padding:.2em
+      padding:.8em /*上傳框等各種*/
      }
      .dialog-alert .dialog-content {
       text-align:center
@@ -371,14 +375,14 @@
       bottom:0;
       display:flex;
       gap:.1em;
-      background-color:var(--button-bg);
+      background-color:var(--bg);
       padding:0 .1em .1em
      }
      #paging>button {
       z-index:1
      }
      #paging button {
-      text-shadow:2px var(--bg);
+      text-shadow:1px var(--bg);
      }
      #paging #paging-middle {
       padding:0 .4em;
@@ -524,7 +528,8 @@
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(var(--tile-width),1fr));
       grid-auto-rows:calc(var(--name-height) + 1.3em);
-      gap:0 3px;
+      gap:0 2px;
+      row-gap:2px;
      }
      .tiles-mode ul.dir li {
       text-align:center;
@@ -534,8 +539,9 @@
       /*border-bottom:1px solid #27272a;*/
       overflow-x:clip;
       padding:.5em 0 0;
-      border: 1px solid var(--ghost-contrast); /*縮略圖框框*/
+      border: 1px solid var(--grid-contrast); /*縮略圖框框*/
       border-radius: 0.4em;
+      justify-content: space-evenly;
      }
      .tiles-mode ul.dir li .link-wrapper:not(:hover) {
       max-height:var(--name-height);
@@ -795,7 +801,11 @@
           z-index: 1;
           }
   }
-  
+  @media (max-width: 42em) {
+    .breadcrumb .icon {
+        font-size: 18px;
+        
+    }
   #player-title {
       color: var(--button-text);
       padding: .5em 1em;
@@ -924,7 +934,8 @@
 
      #folder-stats,
      #filter-bar>span {
-      font-size:90%
+      font-size:80%;
+      padding: .56em;
      }
      #folder-stats {
       margin-left:.5em;
@@ -962,7 +973,6 @@
       z-index:1000
      }
      .dialog {
-      background-color:var(--color);
       padding:max(.5em,1vw,2vh);
       padding-top:0;
       border-radius:0.4em;
@@ -973,8 +983,8 @@
       display:flex;
       flex-direction:column;
       justify-content:center;
-      border: 1px solid var(--button-text);
-      /*overflow: visible;*/
+      border: 1px solid var(--good-contrast);
+      overflow: visible;
       font-size: 90%
      }
      /*.dialog::after {
@@ -1104,3 +1114,4 @@
       padding: 2em 2em;
       border-radius: 0.5em;
     }*/
+    
