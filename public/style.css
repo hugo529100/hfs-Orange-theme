@@ -804,7 +804,7 @@
   @media (max-width: 42em) {
     .breadcrumb .icon {
         font-size: 18px;
-        
+       } 
     }
   #player-title {
       color: var(--button-text);
@@ -975,6 +975,7 @@
      .dialog {
       padding:max(.5em,1vw,2vh);
       padding-top:0;
+      border: 1px solid var(--good-contrast);
       border-radius:0.4em;
       position:relative;
       margin:0 3vw;
@@ -983,21 +984,10 @@
       display:flex;
       flex-direction:column;
       justify-content:center;
-      border: 1px solid var(--good-contrast);
       overflow: visible;
-      font-size: 90%
+      font-size: 90%;
      }
-     /*.dialog::after {
-       z-index: -1;
-       content: "";
-       position: absolute;
-       bottom: -1.3em;
-       left: -1.3em;
-       width: 101%;
-       height: 101%;
-       background-image: radial-gradient(#ffbb00 1px, transparent 1px);
-       background-size: 5px 5px;
-     }*/
+
      .dialog-icon {
       color:var(--button-text);
       background-color:var(--color);
