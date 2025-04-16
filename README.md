@@ -39,6 +39,9 @@ Additional change for details, more fit and looks better .like the titles views.
 An important things is the top banner images can use hfs3 api for load in auto, just upload what your favorit picture ,then can show on pages.
 Lazyload mod can let the network transfer keep low ,and radmom-show when the page refresh. and can use Gifs and make it cool looking.~~~~
 
+2025/04/16
+fix all grids looks better, many details fix. 
+
 fit for Phones Pads PCs looking speciall for pictures album.
 
 this all I just use AI coding for build , it may have some bugs ,but i keep fix in my daily use.
