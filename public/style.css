@@ -102,7 +102,7 @@ header {
 	top: 0;
 	padding: .2em;
 	backdrop-filter:blur(1px);
-	z-index: 1;
+	z-index: 10;
 	border: 1px solid var(--faint-contrast);
 	border-radius: 0.3em;
 	position:sticky;
@@ -165,7 +165,7 @@ kbd {
 	word-break: break-word;
 	transition: all 0.25s ease;
 	backdrop-filter:blur(2px);
-	z-index: 0;
+	z-index: 100;
 	height: 25px;
   overflow: hidden;
   white-space: nowrap;
@@ -213,7 +213,7 @@ ul.dir li:nth-of-type(odd) {
 	background-color:var(--ghost-contrast);
 }
 ul.dir li input[type=checkbox] {
-	z-index: 3;
+	z-index: 1;
 	margin-right:0.8em;
 }
 @media (hover: none) {
@@ -631,7 +631,7 @@ background-color:#18181b
 	background:var(--bg);
 }
 .tiles-mode ul.dir li:hover input[type=checkbox] {
-	z-index:2;
+	z-index:3;
 }
 .tiles-mode ul.dir li:hover .entry-panel {
 	padding-bottom:.3em;
@@ -819,7 +819,7 @@ ul a:focus-visible {
 		background: var(--bg);
 		border-radius: 8px;
 		border: 1px solid var(--faint-contrast);
-		z-index: 1;
+		z-index: 3;
 	}
 }
 @media (max-width: 42em) {
@@ -1123,6 +1123,7 @@ border-radius: 0.5em;
 }*/
 .toast {/*右上角提示框*/
 	background-color: var(--button-bg);
+	background: var(--button-bg);
 	color: var(--button-text);
 	transition: all .8s ease-in;
 	position: relative;
