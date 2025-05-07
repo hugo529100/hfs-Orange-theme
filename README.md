@@ -46,9 +46,11 @@ fit for Phones Pads PCs looking speciall for pictures album.
 
 this all I just use AI coding for build , it may have some bugs ,but i keep fix in my daily use.
 
-
 https://github.com/user-attachments/assets/64b57935-3fe9-4b1d-9e6e-f31ed25d3e9c
 
+
+2025/05/07
+fix some details paging and admin button now blink 
 
 
 ======================================================================
