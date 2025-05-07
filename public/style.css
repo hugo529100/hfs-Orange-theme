@@ -1,6 +1,6 @@
 
 :root {
-	/*height: 100dvh;*/
+	height: 100dvh;
 	--bg: #ffffffd8;
 	--text: #1b1713e1;
 	--background: #ffffffd8;
@@ -26,14 +26,16 @@
 	--button-text: #ff9900;
 	--button-bg: #16141100;
 	color-scheme: dark;
-	--ghost-contrast: rgba(48, 48, 48, 0.18);
-	--faint-contrast: rgba(58, 58, 58, 0.75);
+	--ghost-contrast: rgba(48, 48, 48, 0.16);
+	--faint-contrast: rgba(58, 58, 58, 0.86);
 	--comment-contrast: rgba(158, 158, 158, 0.65);
 	--grid-contrast: rgba(48, 48, 48, 0.48);
 	background-color:#0b0a09;
 	--focus-color: #ff9900;
 	--text-high-contrast: #ff9900;
 	--success: #0b0a09ab;
+	--warning: #0b0a09ab;
+	--link: #ff9900;
 }
 :root .theme-dark .highlightedText,
 :root .theme-dark .file-menu a:hover,
@@ -62,17 +64,20 @@
 }
 /*admin按鈕*/
 :root .theme-dark button.toggled {
-	text-shadow: 0 0 4px var(--good-contrast);
+	text-shadow: 0 0 8px var(--good-contrast);
 	color:var(--button-text);
 }
 :root .theme-light button.toggled {
-	/*text-shadow: 0 0 4px  var(--faint-contrast);*/
+	text-shadow: 0 0 6px  var(--good-contrast);
 	color: var(--button-text);
 }
+
 :root .toggled {
 	background-color:var(--button-bg);
 	text-shadow: 0 0 1px var(--bg);
 }
+
+
 body {
 	background-size: contain;
 	background-color:var(--bg);
@@ -102,7 +107,7 @@ header {
 	top: 0;
 	padding: .2em;
 	backdrop-filter:blur(1px);
-	z-index: 10;
+	z-index: 3;
 	border: 1px solid var(--faint-contrast);
 	border-radius: 0.3em;
 	position:sticky;
@@ -127,7 +132,7 @@ kbd {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
-	font-size: 12x;
+	/*font-size: 14px;*/
 }
 #root>div {
 	max-width: 100%;
@@ -165,7 +170,7 @@ kbd {
 	word-break: break-word;
 	transition: all 0.25s ease;
 	backdrop-filter:blur(2px);
-	z-index: 100;
+	z-index: 10;
 	height: 25px;
   overflow: hidden;
   white-space: nowrap;
@@ -288,6 +293,12 @@ ul.dir li.page-separator:before {
 	font-size:smaller;
 	margin-left:calc(50% - 1em);
 	opacity:.9;
+  animation: blink 0.8s step-start 0s infinite;
+}
+#paging button.toggled {
+	border: 1px solid var(--good-contrast);
+ border-radius: 0.4em;
+animation: blink 1.6s infinite;
 }
 .entry-comment {
 	/*小標簽*/
@@ -348,6 +359,14 @@ button .label {
 button .icon {
 	margin: -.1em 0 auto;
 }
+
+button#user-button.toggled .icon {
+	animation: blink 1.6s infinite;
+}
+button#select-button.toggled .icon {
+	animation: blink 1s step-start 0s infinite;
+}
+
 .dialog-backdrop
 .working {
 	font-size:5em;
@@ -365,7 +384,7 @@ button .icon {
 }
 .dialog {
 	min-width:11em;
-	font: size 80%;
+	font-size: 80%;
 	/*--color: var(--button-bg)*/
 	background-color:var(--bg);
 }
@@ -741,7 +760,7 @@ background-color:#18181b
 }
 #root .file-show .bar .entry-ts {
 	display:inherit;
-	/*font: size 8px;控制預覽標題文字*/;
+	font-size: 8px;控制預覽標題文字;
 }
 #root .file-show .bar .entry-size:after {
 	display:none;
@@ -902,6 +921,8 @@ img.file-icon {
 .mirror:before {
 	transform:scaleX(-1);
 }
+
+
 .icon-button,
 ul.dir li .entry-panel .file-menu-button {
 	/*文件菜單小按鈕*/
@@ -930,7 +951,7 @@ header {
 		opacity:1;
 	}
 	50% {
-		opacity:.2;
+		opacity:.5;
 	}
 }
 @keyframes spin {
@@ -940,20 +961,18 @@ header {
 }
 @keyframes fade-in {
 	0% {
-		opacity:0;
+		opacity:0.4;
 	}
 	to {
 		opacity:1;
 	}
 }
-.spinner,
-.icon
-.spinner:before {
+
+.spinner,.icon.spinner:before {
 	animation:1.5s spin infinite linear;
 	display:inline-flex;
 	justify-content:center;
 	align-items:center;
-	width: 50%;
 }
 #folder-stats,
 #filter-bar>span {
@@ -1121,20 +1140,45 @@ border: 19px solid #27272a;
 padding: 2em 2em;
 border-radius: 0.5em;
 }*/
+.toasts {
+  position: fixed;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: .3em;
+  margin-left: 3em;
+  gap: .3em;
+  z-index: 1001;
+}
 .toast {/*右上角提示框*/
-	background-color: var(--button-bg);
-	background: var(--button-bg);
+	background-color: var(--bg);
+	background: var(--bg);
 	color: var(--button-text);
-	transition: all .8s ease-in;
+	transition: all .4s ease-in;
 	position: relative;
-	left: -.5em;
-	overflow: hidden;
+	left: -.4em;
 	display: flex;
 	align-items: center;
-	padding: .3em .6em;
+	padding: .6em .6em;
 	border: 1px solid var(--button-text);
 	border-radius: 0.4em;
 	box-shadow: 0 0 .3em .3em rgba(136, 136, 136, .0);
 	box-sizing: border-box;
 	backdrop-filter:blur(2px);
+	font-size:  80%;
+}
+
+.toast.before {
+  left: 100%;
+  transform: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.toast.after {
+  height: 0 !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition-duration: 0.4s;
+  transform: none;
 }
