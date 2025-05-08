@@ -1126,12 +1126,19 @@ input[type=checkbox]:checked {
 	margin: 0;
 	font-size: 14px;
 }
+/*播放器内標題*/
 @supports (width: min(1px,2px)) {
 	#root .file-show {
 		--nav-size: min(25vh, 25vw, 13em);
 		font-size: 12px;
-		/*播放器内標題*/;
+		color: var(--mild-contrast);/*fixtemp*/
+		;
 	}
+}
+#root .file-show .bar .entry-details {
+    font-size: smaller;
+    margin-left: 1em;
+    color: var(--mild-contrast);/*fixtemp*/
 }
 /*
 #preview-content {
