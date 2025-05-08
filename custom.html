@@ -1,15 +1,51 @@
 [beforeHeader]
 <style>
 .list-wrapper { 
-max-width: 120em;
-margin-right: auto;
-margin-left: auto;
+  max-width: 120em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* 新增預載動畫樣式 */
+.loading-placeholder {
+  position: relative;
+  height: 22vh;
+  width: 100%;
+  border-radius: 0.4em;
+  background-color: var(--faint-contrast);
+  overflow: hidden;
+}
+
+.loading-placeholder::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(55, 55, 55, 0.1),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  100% {
+    left: 100%;
+  }
 }
 </style>
 
 <!-- banner范围限制-->
 <style> 
-#banner img{
+#banner {
+  position: relative;
+}
+
+#banner img {
   opacity: 0;
   border: 1px solid var(--faint-contrast);
   border-radius: 0.4em;
@@ -22,15 +58,16 @@ margin-left: auto;
   margin: -2px auto;
   margin-left: -1.0px;
   transition: opacity 0.4s ease-in-out;
-   }
+}
 </style>
 
-
 <div id="banner">
-<img id="randomImage" alt="Random Image" 
-     style="transition: opacity 0.5s;"
-     data-src="" 
-     loading="lazy">
+  <!-- 新增預載動畫容器 -->
+  <div id="loadingPlaceholder" class="loading-placeholder"></div>
+  <img id="randomImage" alt="Random Image" 
+       style="transition: opacity 0.5s;"
+       data-src="" 
+       loading="lazy">
 </div>
 
 <script>
@@ -61,11 +98,12 @@ const observer = new IntersectionObserver((entries) => {
     threshold: [0, 0.1, 0.5] // 多阶段触发点
 });
 
-
-    
 // 主初始化函数
 async function init() {
     try {
+        // 顯示預載動畫
+        document.getElementById('loadingPlaceholder').style.display = 'block';
+        
         // 获取图片列表（不带缓存参数）
         const response = await fetch(API_ENDPOINT);
         const textData = await response.text();
@@ -81,25 +119,34 @@ async function init() {
             })
             .filter(Boolean);
         
-        if (imageList.length === 0) return;
+        if (imageList.length === 0) {
+            // 如果沒有圖片，隱藏預載動畫
+            document.getElementById('loadingPlaceholder').style.display = 'none';
+            return;
+        }
 
         // 高质量随机洗牌
         shuffleArray(imageList);
-
+        console.log('洗牌结果:', imageList.slice(0,3));
         // 设置初始data-src
         const imgElement = document.getElementById('randomImage');
         imgElement.dataset.src = imageList[0];
         
         // 开始观察
         observer.observe(imgElement);
-        console.log('洗牌结果:', imageList.slice(0,3));
+
     } catch (error) {
         console.error('初始化失败:', error);
+        // 發生錯誤時隱藏預載動畫
+        document.getElementById('loadingPlaceholder').style.display = 'none';
     }
 }
 
 // 改进的图片加载函数
 function loadRandomImage(imgElement) {
+    // 獲取預載動畫元素
+    const loadingElement = document.getElementById('loadingPlaceholder');
+    
     // 获取随机索引
     const randomIndex = Math.floor(Math.random() * imageList.length);
     const selectedUrl = imageList[randomIndex];
@@ -113,6 +160,8 @@ function loadRandomImage(imgElement) {
         // 验证成功后再设置实际图片
         imgElement.src = selectedUrl;
         imgElement.onload = () => {
+            // 圖片載入完成後隱藏預載動畫並顯示圖片
+            loadingElement.style.display = 'none';
             imgElement.style.opacity = 1;
         };
         
@@ -121,10 +170,13 @@ function loadRandomImage(imgElement) {
     };
     
     tempImage.onerror = () => {
-        console.warn('图片验证失败:', selectedUrl);
+        console.warn('圖片驗證失敗:', selectedUrl);
         imageList.splice(randomIndex, 1); // 移除非法URL
         if (imageList.length > 0) {
             loadRandomImage(imgElement);
+        } else {
+            // 如果沒有有效圖片，隱藏預載動畫
+            loadingElement.style.display = 'none';
         }
     };
     
@@ -148,7 +200,6 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-
 
 // 启动初始化
 init();
@@ -205,8 +256,12 @@ document.getElementById('refreshButton').addEventListener('click', () => {
 
 
 <div class="footer-w3l">
-	<p>｛紫雲古琴斵製技藝坊｝THE GUQIN LUTHIERY & WORKSHOP. SINCE 2014. </p>
-		<p>www.Luthier.blog Copyright &copy; 2014. ZIYUN GUQIN LUTHIERY. All rights reserved.</p>
+
+<p> Massimo Melina
+- rejetto/Hfs3-project. Copyright &copy; 2025.  All rights reserved.</p>
+	<p>｛紫雲古琴斵製技藝坊｝THE GUQIN LUTHIERY & WORKSHOP. SINCE 2014. www.Luthier.blog</p>
+		
+
 </div>
 
 [top]
