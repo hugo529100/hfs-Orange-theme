@@ -19,7 +19,7 @@
 	--success: #ffffffd8;
 }
 :root .theme-dark {
-	--bg: #0b0a09ab;
+	--bg: #0b0a09;
 	--text: #ff9900;
 	--good-contrast: #ff9900;
 	--button-bg-hover: #16141198;
@@ -361,7 +361,7 @@ button .icon {
 }
 
 button#user-button.toggled .icon {
-	animation: blink 1.6s infinite;
+	animation: blink 1.6s step-start 0s infinite;
 }
 button#select-button.toggled .icon {
 	animation: blink 1s step-start 0s infinite;
@@ -688,6 +688,7 @@ background-color:#18181b
 	display:flex;
 	justify-content:center;
 	align-items:center;
+	background-color:#000000e0;/*tempfix*/
 }
 #root .file-show .showing {
 	/*留邊縫修正max-width:calc(100% - var(--nav-size) * 0.1);*/
@@ -733,7 +734,6 @@ background-color:#18181b
 	/*font-size:var(--nav-size);*/
 	cursor:pointer;
 	opacity:0.0;
-	/*-webkit-text-stroke:2px var(--good-contrast);*/
 	color: rgb(80, 80, 80);
 	user-select:none;
 	transition:opacity .5s;
@@ -750,7 +750,7 @@ background-color:#18181b
 }
 #root .file-show .bar {
 	padding:.2em;
-	background:var(--bg);
+	background:#000000;/*tempfix*/
 	opacity:.8;
 	display:flex;
 	flex-wrap:wrap;
@@ -847,7 +847,7 @@ ul a:focus-visible {
 	}
 }
 #player-title {
-	color: var(--button-text);
+	/*color: var(--button-text);*/
 	padding: .5em 1em;
 	text-decoration: none;
 	border-radius: .5em;
@@ -903,7 +903,7 @@ select {
 }
 .icon {
 	font-size:1.2em;
-	height:1.35em;/*1.2圖標壓迫名字*/
+	height:1.2em;/*1.2圖標壓迫名字*/
 	width:1.4em;
 	display:inline-block;
 	text-align:center;
@@ -951,7 +951,7 @@ header {
 		opacity:1;
 	}
 	50% {
-		opacity:.5;
+		opacity:.4;
 	}
 }
 @keyframes spin {
@@ -1129,7 +1129,7 @@ input[type=checkbox]:checked {
 @supports (width: min(1px,2px)) {
 	#root .file-show {
 		--nav-size: min(25vh, 25vw, 13em);
-		font-size: 14px;
+		font-size: 12px;
 		/*播放器内標題*/;
 	}
 }
