@@ -127,6 +127,7 @@ kbd {
 	padding:2px 4px;
 	white-space:nowrap;
 	margin-right:.5em;
+	box-shadow: 0 0 0px rgba(0, 0, 0, .2), 0 0 rgba(255, 255, 255, .1) inset;
 }
 #root {
 	max-width: 100%;
@@ -1118,17 +1119,8 @@ input[type=checkbox]:checked {
 	outline: 1px dotted var(--button-text);
 	outline-offset: -2px;
 }
-#thumbnailsPreview {
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	z-index:10;
-}
-#thumbnailsPreview>* {
-	max-height: 1000px;
-	max-width: 1000px;
-	z-index:10;
-}
+
+
 .file-dialog-properties {
 	word-break: break-word;
 	line-height: 1.5em;
@@ -1141,9 +1133,9 @@ input[type=checkbox]:checked {
 		--nav-size: min(25vh, 25vw, 13em);
 		font-size: 12px;
 /*color: var(--mild-contrast);		fixtemp*/
-		;
+		
 	}
-}
+
 
 }
 /*
