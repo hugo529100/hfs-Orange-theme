@@ -1,25 +1,26 @@
 
 :root {
 	height: 100dvh;
-	--bg: #ffffffd8;
-	--text: #1b1713e1;
-	--background: #ffffffd8;
+	--bg: #ffffffba;
+	--text: #1a0701d4;
+	--background: #ffffffba;
 	--background-color:#ffffff;
 	--ghost-contrast: rgba(128, 128, 128, 0.062);
 	--faint-contrast: #7676763b;
 	--faint-contrast-trans: #4343437e;
-	/*--mild-contrast: rgba(77, 77, 77, 0.267);*/
+	--mild-contrast: rgba(77, 77, 77, 0.267);
 	--comment-contrast: rgba(58, 58, 58, 0.85);
 	--good-contrast: rgba(36, 36, 36, 0.445);
 	--grid-contrast: rgba(48, 48, 48, 0.14);
-	--button-bg: #eeeeeec7;
-	--button-text: #1b1713e1;
-	--focus-color: #1b1713e1;
+	--button-bg: #eeeeee9c;
+	--button-text: #1a0701d4;
+	--focus-color: #1a0701d4;
 	--separator: " – ";
 	--success: #ffffffd8;
+	--deepprevew: #0000009e;
 }
 :root .theme-dark {
-	--bg: #0b0a09;
+	--bg: #0b0a09a6;
 	--text: #ff9900;
 	--good-contrast: #ff9900;
 	--button-bg-hover: #16141198;
@@ -28,6 +29,7 @@
 	color-scheme: dark;
 	--ghost-contrast: rgba(48, 48, 48, 0.16);
 	--faint-contrast: rgba(58, 58, 58, 0.86);
+	--mild-contrast: rgba(58, 58, 58, 0.267);
 	--comment-contrast: rgba(158, 158, 158, 0.65);
 	--grid-contrast: rgba(48, 48, 48, 0.48);
 	background-color:#0b0a09;
@@ -56,7 +58,7 @@
 }
 :root .theme-dark .dialog-backdrop {
 	backdrop-filter:blur(1px);
-	background-color:#0000009a;
+  background-color:var(--deepprevew);
 }
 :root .theme-dark .error-msg {
 	color:#b88;
@@ -676,6 +678,7 @@ background-color:#18181b
 	font-size: 10px;
 	/*控制預覽標題文字*/
 	--nav-size: min(25vh, 25vw, 13em)/* --nav-size: min(25vh, 25vw)*/;
+		backdrop-filter:blur(2px);
 }
 .fullWidth {
 	.showing-container, .showing {
@@ -688,7 +691,8 @@ background-color:#18181b
 	display:flex;
 	justify-content:center;
 	align-items:center;
-	background-color:#000000e0;/*tempfix*/
+backdrop-filter:blur(2px);
+background-color:var(--deepprevew);
 }
 #root .file-show .showing {
 	/*留邊縫修正max-width:calc(100% - var(--nav-size) * 0.1);*/
@@ -750,13 +754,15 @@ background-color:#18181b
 }
 #root .file-show .bar {
 	padding:.2em;
-	background:#000000;/*tempfix*/
 	opacity:.8;
 	display:flex;
 	flex-wrap:wrap;
 	align-items:center;
 	justify-content:flex-end;
 	gap:.2em .2em;
+	backdrop-filter:blur(2px);
+background-color:var(--bg);
+
 }
 #root .file-show .bar .entry-ts {
 	display:inherit;
@@ -1005,6 +1011,9 @@ header {
 #filter-bar span:empty {
 	display:none;
 }
+:root .theme-dark #root .dialog-backdrop {
+    background: var(--deepprevew);
+}
 .dialog-backdrop {
 	position:fixed;
 	inset:0;
@@ -1131,14 +1140,11 @@ input[type=checkbox]:checked {
 	#root .file-show {
 		--nav-size: min(25vh, 25vw, 13em);
 		font-size: 12px;
-		color: var(--mild-contrast);/*fixtemp*/
+/*color: var(--mild-contrast);		fixtemp*/
 		;
 	}
 }
-#root .file-show .bar .entry-details {
-    font-size: smaller;
-    margin-left: 1em;
-    color: var(--mild-contrast);/*fixtemp*/
+
 }
 /*
 #preview-content {
