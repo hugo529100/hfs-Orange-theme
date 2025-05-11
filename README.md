@@ -56,6 +56,8 @@ fix some details like paging and admin button now blink ,and someting i just for
 fix the prevew background colour (just temp),and some ui detail  better.
 cppyright in footer been change 
 
+2025/05/11
+a bit fix back catch up with 0.57.2 beta3
 
 
 ======================================================================
