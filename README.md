@@ -59,6 +59,8 @@ cppyright in footer been change
 2025/05/11
 a bit fix back catch up with 0.57.2 beta3
 
+2025/05/12
+fix the disable upload button in strait line 
 
 ======================================================================
 
