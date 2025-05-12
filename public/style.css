@@ -793,6 +793,7 @@ button {
 	font-weight: bold;
 	backdrop-filter:blur(2px);
 	transition: all 0.25s ease;
+
 }
 button:hover {
 	background-color: var(--button-text);
@@ -802,10 +803,10 @@ button:hover {
 	outline:1px solid var(--button-text);
 }
 button[disabled] {
-	border: 1px solid var(--faint-contrast);
+	/*border: 1px solid var(--faint-contrast);*/
 	color:var(--faint-contrast);
 	background-color: var(--button-bg);
-	/*background-color:var(--faint-contrast)*/;
+	border-inline: #f0f8ff00;
 }
 button.toggled {
 	/*color:#7777772c;圖標活動顔色例如admin*/
