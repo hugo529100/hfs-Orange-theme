@@ -20,7 +20,7 @@
 	--deepprevew: #0000009e;
 }
 :root .theme-dark {
-	--bg: #0b0a09a6;
+	--bg: #0b0a09e0;
 	--text: #ff9900;
 	--good-contrast: #ff9900;
 	--button-bg-hover: #16141198;
@@ -114,6 +114,7 @@ header {
 	border-radius: 0.3em;
 	position:sticky;
 	text-shadow: 0px 0px 2px var(--bg);
+  box-shadow: 0px 6px 9px 0px #0000006b;
 }
 kbd {
 	background-color:var(--button-bg);
@@ -172,7 +173,7 @@ kbd {
 	text-shadow: 0px 0px 2px var(--bg);
 	word-break: break-word;
 	transition: all 0.25s ease;
-	backdrop-filter:blur(2px);
+	/*backdrop-filter:blur(1px);模糊*/
 	z-index: 10;
 	height: 25px;
   overflow: hidden;
@@ -527,6 +528,10 @@ button#select-button.toggled .icon {
 	font-size: 15px;
 	display:flex;
 	align-items:flex-start;
+	border: 1px solid var(--faint-contrast);
+ border-radius: 0.4em;
+ height: 1.8em;
+     min-width: 12em;
 }
 .file-menu a label {
 	margin-top:.1em;
@@ -791,7 +796,7 @@ button {
 	text-shadow: 0px 0px 2px var(--bg);
 	font-size: 14px;
 	font-weight: bold;
-	backdrop-filter:blur(2px);
+	/*backdrop-filter:blur(1px);模糊*/
 	transition: all 0.25s ease;
 
 }
@@ -1040,6 +1045,7 @@ header {
 	overflow: visible;
 	font-size: 90%;
 	z-index:10;
+	box-shadow: 4px 6px 5px 0px #00000060;
 }
 .dialog-icon {
 	color:var(--button-text);
@@ -1057,7 +1063,7 @@ header {
 	justify-content:center;
 }
 .dialog-title {
-	font-size:100%;
+	font-size:80%;
 	margin:.3em 0;
 	padding:0 .5em;
 	min-height:1.2em;
