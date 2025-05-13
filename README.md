@@ -62,6 +62,9 @@ a bit fix back catch up with 0.57.2 beta3
 2025/05/12
 fix the disable upload button in strait line 
 
+2025/05/13
+some fix and buttons looks better, in file-menu-dialog add border the button ,easy for click on cellphone in big fingers .
+
 ======================================================================
 
 
