@@ -1024,7 +1024,8 @@ header {
 .dialog-backdrop {
 	position:fixed;
 	inset:0;
-	background:var(--bg);
+	background:var(--button-bg);
+	backdrop-filter: blur(2px);
 	display:flex;
 	justify-content:center;
 	align-items:center;
