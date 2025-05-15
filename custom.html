@@ -1,10 +1,5 @@
 [beforeHeader]
 <style>
-.list-wrapper { 
-  max-width: 120em;
-  margin-right: auto;
-  margin-left: auto;
-}
 
 /* 新增預載動畫樣式 */
 .loading-placeholder {
@@ -71,6 +66,7 @@
 </div>
 
 <script>
+
 // 配置参数
 const API_ENDPOINT = '/images/banner/?get=list';
 
@@ -205,33 +201,6 @@ function shuffleArray(array) {
 init();
 </script>
 
-[afterMenuBar]
-<style>
-#refreshButton {
-padding: 6px 10px;
- font-size: 14px;
-}
-</style>
-
-<!-- 在頁面任意位置添加這個按鈕 -->
-<!-- <button id="refreshButton" title="刷新頁面">◤</button>-->
-
-
-<script>
-// 現有點擊事件代碼保持不變
-document.addEventListener('click', ({ target: t }) => {
-  if (t.tagName === 'LI' && t.closest('ul.dir')) {
-    t.querySelector('a')?.click()
-  }
-})
-
-// 新增刷新功能
-document.getElementById('refreshButton').addEventListener('click', () => {
-  location.reload()  // 強制刷新頁面
-  // 如果只需要普通刷新可以用 location.reload(false)
-})
-</script>
-
 [footer]
 <style> 
 .footer-w3l p {
@@ -263,25 +232,4 @@ document.getElementById('refreshButton').addEventListener('click', () => {
 		
 
 </div>
-
-[top]
-<style type="text/css">
-     
-   html {
-    zoom: 1.0; /*整個頁面縮放比例*/  
-  }
- </style>
- 
- 
-<style>
-.breadcrumb:nth-of-type(2) { display: true }; /*禁用主页按钮*/
-</style>
-
-<style>
-.breadcrumb:nth-of-type(1) { display: true }; /*禁用返回按钮*/
-</style>
-
-<style>
-#login-options { display: true }; /*禁用登錄允許IP變動*/
-</style>
 
