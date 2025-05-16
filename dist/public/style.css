@@ -190,7 +190,6 @@ kbd {
 	vertical-align: middle;
 	cursor: pointer;
 	border: 1px solid var(--faint-contrast);
-	backdrop-filter:blur(2px);
 	transition: all 0.25s ease;
 }
 .breadcrumb:hover {
@@ -527,11 +526,11 @@ button#select-button.toggled .icon {
 	z-index: 10;
 	font-size: 15px;
 	display:flex;
-	align-items:flex-start;
+	align-items:center;
 	border: 1px solid var(--faint-contrast);
- border-radius: 0.4em;
- height: 1.8em;
-     min-width: 12em;
+  border-radius: 0.4em;
+  height: 2.2em;
+  min-width: 12em;
 }
 .file-menu a label {
 	margin-top:.1em;
@@ -1155,43 +1154,55 @@ border-radius: 0.5em;
 }*/
 .toasts {
   position: fixed;
+  top: 0;
   right: 0;
   display: flex;
   flex-direction: column;
-  margin-top: .3em;
-  margin-left: 3em;
-  gap: .3em;
+  padding: 0.3em;
+  gap: 0.3em;
   z-index: 1001;
+  max-width: 100%; /* 确保容器不超过视口宽度 */
 }
-.toast {/*右上角提示框*/
-	background-color: var(--bg);
-	background: var(--bg);
-	color: var(--button-text);
-	transition: all .4s ease-in;
-	position: relative;
-	left: -.4em;
-	display: flex;
-	align-items: center;
-	padding: .6em .6em;
-	border: 1px solid var(--button-text);
-	border-radius: 0.4em;
-	box-shadow: 0 0 .3em .3em rgba(136, 136, 136, .0);
-	box-sizing: border-box;
-	backdrop-filter:blur(2px);
-	font-size:  80%;
+
+.toast {
+  background-color: var(--bg);
+  color: var(--button-text);
+  transition: all 0.4s ease-in;
+  display: flex;
+  align-items: center;
+  padding: 0.6em;
+  border: 1px solid var(--button-text);
+  border-radius: 0.4em;
+  box-shadow: 0 0 0.3em rgba(136, 136, 136, 0);
+  backdrop-filter: blur(2px);
+  font-size: 90%;
+  transform: translateX(0);
+  
+  /* 新增：防止内容过长溢出 */
+  max-width: 400px; /* 限制最大宽度（可调整） */
+  width: auto;      /* 自动宽度，但不超过 max-width */
+  word-break: break-word; /* 长单词或URL强制换行 */
+  overflow-wrap: break-word; /* 更智能的换行处理 */
 }
 
 .toast.before {
-  left: 100%;
-  transform: none;
-  padding-top: 0;
-  padding-bottom: 0;
+  transform: translateX(100%);
 }
 
 .toast.after {
-  height: 0 !important;
-  padding-top: 0;
-  padding-bottom: 0;
-  transition-duration: 0.4s;
-  transform: none;
+  height: 0;
+  padding: 0;
+  margin-top: -0.6em;
+  opacity: 0;
+  transition: all 0.4s ease-in;
 }
+
+body  {
+  background: 
+    radial-gradient(circle at 1px 1px, rgba(100, 100, 100, 0.1) 1px, transparent 1px),
+    white;
+  background-size: 8px 8px;
+}
+
+
+
