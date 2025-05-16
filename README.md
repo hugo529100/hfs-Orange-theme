@@ -65,6 +65,17 @@ fix the disable upload button in strait line
 2025/05/13
 some fix and buttons looks better, in file-menu-dialog add border the button ,easy for click on cellphone in big fingers .
 
+2025/05/16
+chutom.html been remove because I make some plugin to replace this custon:
+hfs-Banner-footer-plugin --- banner and footer
+hfs-Page-scale-custom --- fonts custom
+hfs-Orange-theme --- main theme
+hfs-frontend-toggles --- some buttons hide and add
+
+enjoy~  and keep make perfect
+
+
+
 ======================================================================
 
 
