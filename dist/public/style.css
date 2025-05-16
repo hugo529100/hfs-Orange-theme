@@ -1,8 +1,8 @@
 
 :root {
 	height: 100dvh;
-	--bg: #ffffffba;
-	--text: #1a0701d4;
+	--bg: #ffffffa6;
+	--text: #1f140cdb;
 	--background: #ffffffba;
 	--background-color:#ffffff;
 	--ghost-contrast: rgba(128, 128, 128, 0.062);
@@ -13,14 +13,14 @@
 	--good-contrast: rgba(36, 36, 36, 0.445);
 	--grid-contrast: rgba(48, 48, 48, 0.14);
 	--button-bg: #eeeeee9c;
-	--button-text: #1a0701d4;
-	--focus-color: #1a0701d4;
+	--button-text: #1f140cdb;
+	--focus-color: #1f140cdb;
 	--separator: " – ";
 	--success: #ffffffd8;
 	--deepprevew: #0000009e;
 }
 :root .theme-dark {
-	--bg: #0b0a09e0;
+	--bg: #0b0a09ba;
 	--text: #ff9900;
 	--good-contrast: #ff9900;
 	--button-bg-hover: #16141198;
