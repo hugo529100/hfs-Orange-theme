@@ -143,6 +143,7 @@ kbd {
 	text-align: left;
 	/*center會影響文件文字間距*/
 	text-overflow: ellipsis;
+	box-shadow: 1px 4px 5px 0px #0000004f;
 }
 .list-wrapper {
 	/*整個文件列表外框架*/
@@ -1189,7 +1190,7 @@ border-radius: 0.5em;
   transform: translateX(0);
   
   /* 新增：防止内容过长溢出 */
-  max-width: 400px; /* 限制最大宽度（可调整） */
+  max-width: 350px; /* 限制最大宽度（可调整） */
   width: auto;      /* 自动宽度，但不超过 max-width */
   word-break: break-word; /* 长单词或URL强制换行 */
   overflow-wrap: break-word; /* 更智能的换行处理 */
