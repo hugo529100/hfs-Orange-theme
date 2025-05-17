@@ -7,7 +7,7 @@
 	--background-color:#ffffff;
 	--ghost-contrast: rgba(128, 128, 128, 0.062);
 	--faint-contrast: #7676763b;
-	--faint-contrast-trans: #4343437e;
+	--faint-contrast-trans: #76767663;
 	--mild-contrast: rgba(77, 77, 77, 0.267);
 	--comment-contrast: rgba(58, 58, 58, 0.85);
 	--good-contrast: rgba(36, 36, 36, 0.445);
@@ -325,7 +325,7 @@ animation: blink 1.6s infinite;
 	margin-left:.1em;
 }
 #menu-bar {
-	margin-bottom:.4em;
+	margin-bottom:.1em;/*按鈕上下行間距*/
 	display:flex;
 	justify-content:space-evenly;
 	flex-wrap:wrap;
@@ -920,6 +920,16 @@ select {
 	display:inline-block;
 	text-align:center;
 }
+
+
+#thumbnailsPreview {/*去掉右下角預覽*/
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 0px;
+    width: 0px;
+}
+
 img.file-icon {
 	height:1em;
 }
@@ -989,7 +999,7 @@ header {
 #folder-stats,
 #filter-bar>span {
 	font-size:80%;
-	padding: .56em;
+	padding: .1em;
 }
 #folder-stats {
 	margin-left:.5em;
@@ -1199,7 +1209,7 @@ border-radius: 0.5em;
 
 body  {
   background: 
-    radial-gradient(circle at 1px 1px, rgba(100, 100, 100, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 1px 1px, rgba(150, 150, 150, 0.15) 1px, transparent 1px),
     white;
   background-size: 8px 8px;
 }
