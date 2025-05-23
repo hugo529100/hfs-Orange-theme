@@ -925,7 +925,7 @@ select {
 }
 .icon {
 	font-size:1.2em;
-	height:1.2em;/*1.2圖標壓迫名字*/
+	height:1.4em;/*1.2圖標壓迫名字*/
 	width:1.4em;
 	display:inline-block;
 	text-align:center;
@@ -1223,6 +1223,11 @@ body  {
     white;
   background-size: 8px 8px;
 }
+
+
+
+
+
 
 
 
