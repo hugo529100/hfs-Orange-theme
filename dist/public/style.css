@@ -20,7 +20,7 @@
 	--deepprevew: #0000009e;
 }
 :root .theme-dark {
-	--bg: #0b0a09ba;
+	--bg:rgba(11, 10, 9, 0.8);
 	--text: #ff9900;
 	--good-contrast: #ff9900;
 	--button-bg-hover: #16141198;
@@ -57,7 +57,7 @@
 	color:#ff9900;
 }
 :root .theme-dark .dialog-backdrop {
-	backdrop-filter:blur(1px);
+	/*backdrop-filter:blur(1px);*/
   background-color:var(--deepprevew);
 }
 :root .theme-dark .error-msg {
@@ -108,7 +108,7 @@ header {
 	font-size: 14px;
 	top: 0;
 	padding: .2em;
-	backdrop-filter:blur(2px);
+	backdrop-filter:blur(20px);
 	z-index: 3;
 	border: 1px solid var(--faint-contrast);
 	border-radius: 0.3em;
@@ -604,10 +604,9 @@ button#select-button.toggled .icon {
 }
 .tiles-mode ul.dir li .link-wrapper a img.icon {
 	width:100%;
-	height:2.6em;/*縮略圖占比*/
+	height:2.9em;/*縮略圖占比*/
 	object-fit: cover;
-	/*拉滿裁切*/
-	padding:0em;
+	padding:0em;/*拉滿裁切*/
 }
 .tiles-mode ul.dir li .link-wrapper a .icon {
 	font-size:4rem;
@@ -629,6 +628,9 @@ button#select-button.toggled .icon {
 /*.tiles-mode ul.dir li:nth-of-type(odd):not(:hover) {
 background-color:#18181b
 }*/
+.tiles-mode ul.dir li:hover {/*去掉縮略圖hover的背景*/
+    --bg: var(--bg);
+}
 .tiles-mode ul.dir li .entry-panel {
 	justify-content:center;
 	font-size:10pt;
@@ -697,7 +699,7 @@ background-color:#18181b
 	display:flex;
 	justify-content:center;
 	align-items:center;
-backdrop-filter:blur(2px);
+backdrop-filter:blur(4px);
 background-color:var(--deepprevew);
 }
 #root .file-show .showing {
@@ -958,7 +960,6 @@ img.file-icon {
 .icon-button,
 ul.dir li .entry-panel .file-menu-button {
 	/*文件菜單小按鈕*/
-	font-size:14px;
 	padding:.3em;
 	margin-left:.1em;
 	height: fit-content;
@@ -983,7 +984,7 @@ header {
 		opacity:1;
 	}
 	50% {
-		opacity:.4;
+		opacity:.5;
 	}
 }
 @keyframes spin {
@@ -1044,7 +1045,7 @@ header {
 	position:fixed;
 	inset:0;
 	background:var(--button-bg);
-	backdrop-filter: blur(2px);
+	/*backdrop-filter: blur(2px);*/
 	display:flex;
 	justify-content:center;
 	align-items:center;
@@ -1163,7 +1164,6 @@ input[type=checkbox]:checked {
 		
 	}
 
-
 }
 /*
 #preview-content {
@@ -1172,13 +1172,14 @@ border: 19px solid #27272a;
 padding: 2em 2em;
 border-radius: 0.5em;
 }*/
+
 .toasts {
   position: fixed;
   top: 0;
   right: 0;
   display: flex;
   flex-direction: column;
-  padding: 0.3em;
+  /*padding: 0.3em;*/
   gap: 0.3em;
   z-index: 1001;
   max-width: 100%; /* 确保容器不超过视口宽度 */
@@ -1187,7 +1188,7 @@ border-radius: 0.5em;
 .toast {
   background-color: var(--bg);
   color: var(--button-text);
-  transition: all 0.4s ease-in;
+  transition: all 0.2s ease-in;
   display: flex;
   align-items: center;
   padding: 0.6em;
@@ -1197,7 +1198,6 @@ border-radius: 0.5em;
   backdrop-filter: blur(2px);
   font-size: 90%;
   transform: translateX(0);
-  
   /* 新增：防止内容过长溢出 */
   max-width: 350px; /* 限制最大宽度（可调整） */
   width: auto;      /* 自动宽度，但不超过 max-width */
@@ -1214,7 +1214,7 @@ border-radius: 0.5em;
   padding: 0;
   margin-top: -0.6em;
   opacity: 0;
-  transition: all 0.4s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 body  {
@@ -1225,9 +1225,7 @@ body  {
 }
 
 
-
-
-
-
-
-
+* {
+  -webkit-tap-highlight-color: transparent !important;
+  tap-highlight-color: transparent !important;
+}
