@@ -17,10 +17,10 @@
 	--focus-color: #1f140cdb;
 	--separator: " – ";
 	--success: #ffffffd8;
-	--deepprevew: #0000009e;
+	--deepprevew: #000000f6;
 }
 :root .theme-dark {
-	--bg:rgba(11, 10, 9, 0.8);
+	--bg:rgba(8,5,0,0.74);
 	--text: #ff9900;
 	--good-contrast: #ff9900;
 	--button-bg-hover: #16141198;
@@ -28,11 +28,11 @@
 	--button-bg: #16141100;
 	color-scheme: dark;
 	--ghost-contrast: rgba(48, 48, 48, 0.16);
-	--faint-contrast: rgba(58, 58, 58, 0.86);
+	--faint-contrast: rgba(58, 58, 58, 0.92);
 	--mild-contrast: rgba(58, 58, 58, 0.267);
 	--comment-contrast: rgba(158, 158, 158, 0.65);
 	--grid-contrast: rgba(48, 48, 48, 0.48);
-	background-color:#0b0a09;
+	background-color:rgb(5 4 1);
 	--focus-color: #ff9900;
 	--text-high-contrast: #ff9900;
 	--success: #0b0a09ab;
@@ -48,7 +48,7 @@
 	color: var(--button-text);
 }
 :root .theme-dark .dialog-closer {
-	background:rgb(78, 25, 0);
+	background:rgb(34, 34, 34);
 }
 :root .theme-dark .dialog-icon {
 	color:#ff9900;
@@ -108,10 +108,11 @@ header {
 	font-size: 14px;
 	top: 0;
 	padding: .2em;
+	margin: -0.1em;
 	backdrop-filter:blur(20px);
 	z-index: 3;
 	border: 1px solid var(--faint-contrast);
-	border-radius: 0.3em;
+	border-radius: 0.4em;
 	position:sticky;
 	text-shadow: 0px 0px 2px var(--bg);
   box-shadow: 0px 6px 9px 0px #0000006b;
@@ -242,9 +243,8 @@ ul.dir li input[type=checkbox] {
 ul.dir li .link-wrapper a:last-of-type {
 	/*列表顯示的文件名*/
 	overflow: hidden;
-	/*white-space: nowrap;*/
-	text-overflow: ellipsis;
-	/*以上超出則隱藏*/
+	white-space: nowrap;/*文件名隱藏*/
+	text-overflow: ellipsis;/*以上超出則隱藏*/
 	word-break:break-word;
 	padding-right:.3em;
 }
@@ -273,12 +273,12 @@ ul.dir li .entry-panel .file-menu-button {
 	margin:-3px 0 -3px .4em;
 }
 ul.dir li .entry-panel .entry-details {
-	color:var(--good-contrast);
-	/*附加时间内容颜色*/
-	font-size: 80%;
+	color:var(--good-contrast);/*附加时间内容颜色*/
+	font-size: 80%;/*文件大小標注*/
 	margin-left: 2px;
 	font-variant-numeric: tabular-nums;
 	white-space: nowrap;
+	line-height: 0em;/*文件大小標注緊挨文件名*/
 }
 ul.dir li .entry-panel .entry-details .entry-size-unit {
 	margin-left:.3em;
@@ -359,9 +359,6 @@ button .label {
 	/*font-family:poppins;*/
 	cursor:inherit;
 	margin-left:.4em;
-}
-button .icon {
-	margin: -.1em 0 auto;
 }
 
 button#user-button.toggled .icon {
@@ -561,7 +558,7 @@ button#select-button.toggled .icon {
 	--tile-size: 2;
 	--name-lines: 3;
   --name-height: calc(4.8em + var(--tile-size) * 1.6em + 1em * var(--name-lines));
-  --tile-width: calc(5em + 1.4em * var(--tile-size));
+  --tile-width: calc(5em + 1.5em * var(--tile-size));
 }
 .tiles-mode ul.dir {
 	display:grid;
@@ -596,15 +593,12 @@ button#select-button.toggled .icon {
 .tiles-mode ul.dir li .link-wrapper a span {
 	display:block;
 }
-.tiles-mode ul.dir li .link-wrapper a .icon
-.icon {
-	font-size:calc(0.7rem + .7rem * var(--tile-size));
-	/*縮略圖占比*/
-	height: 1.5em;
+.tiles-mode ul.dir li .link-wrapper a .icon.icon {
+    font-size: calc(2.2rem + .54rem * var(--tile-size));
 }
 .tiles-mode ul.dir li .link-wrapper a img.icon {
 	width:100%;
-	height:2.9em;/*縮略圖占比*/
+	height:2.4em;/*縮略圖占比2.6撐滿2.4正常*/
 	object-fit: cover;
 	padding:0em;/*拉滿裁切*/
 }
@@ -686,7 +680,7 @@ background-color:#18181b
 	font-size: 10px;
 	/*控制預覽標題文字*/
 	--nav-size: min(25vh, 25vw, 13em)/* --nav-size: min(25vh, 25vw)*/;
-		backdrop-filter:blur(2px);
+	/*backdrop-filter:blur(2px);*/
 }
 .fullWidth {
 	.showing-container, .showing {
@@ -699,14 +693,16 @@ background-color:#18181b
 	display:flex;
 	justify-content:center;
 	align-items:center;
-backdrop-filter:blur(4px);
-background-color:var(--deepprevew);
+    
 }
 #root .file-show .showing {
-	/*留邊縫修正max-width:calc(100% - var(--nav-size) * 0.1);*/
-	z-index: 0;
+	/*留邊縫修正max-width:calc(100% - var(--nav-size) * 0.1);
 	max-width:100%;
-	max-height:100%;
+	max-height:100%;*/
+	/*强制全屏 打開了導致chrome網絡堵塞*/
+	/*object-fit: contain;
+    height: 100%;
+    width: 100%;*/
 }
 #root .file-show audio.showing {
 	min-width:60%;
@@ -720,6 +716,7 @@ background-color:var(--deepprevew);
 	position:relative;
 	max-height:100%;
 	overflow:hidden;
+    background: var(--deepprevew);
 }
 #root .file-show .freeY .main,
 #root .file-show .fullWidth .main {
@@ -748,7 +745,7 @@ background-color:var(--deepprevew);
 	opacity:0.0;
 	color: rgb(80, 80, 80);
 	user-select:none;
-	transition:opacity .5s;
+	transition:opacity .3s;
 	z-index:10;
 }
 #root .file-show .nav:hover {
@@ -762,19 +759,20 @@ background-color:var(--deepprevew);
 }
 #root .file-show .bar {
 	padding:.2em;
-	opacity:.8;
+	opacity:1.0;
 	display:flex;
 	flex-wrap:wrap;
 	align-items:center;
 	justify-content:flex-end;
 	gap:.2em .2em;
-	backdrop-filter:blur(2px);
-background-color:var(--bg);
-
+    background: var(--bg);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid var(--ghost-contrast);
+	border-top: 1px solid var(--ghost-contrast);
 }
 #root .file-show .bar .entry-ts {
 	display:inherit;
-	font-size: 8px;控制預覽標題文字;
+	font-size: 8px;/*控制預覽標題文字*/
 }
 #root .file-show .bar .entry-size:after {
 	display:none;
@@ -850,6 +848,7 @@ ul a:focus-visible {
 	border-color:transparent;
 	outline:1px solid var(--button-text);
 }
+/*
 @media (min-width: 1900px) {
 	#player {
 		position: fixed;
@@ -865,13 +864,7 @@ ul a:focus-visible {
 		z-index: 3;
 	}
 }
-@media (max-width: 42em) {
-	.breadcrumb .icon {
-		font-size: 18px;
-	}
-}
 #player-title {
-	/*color: var(--button-text);*/
 	padding: .5em 1em;
 	text-decoration: none;
 	border-radius: .5em;
@@ -879,6 +872,11 @@ ul a:focus-visible {
 	text-shadow: 0px 0px 2px var(--bg);
 	font-size: 90%;
 	font-weight: bold;
+}*/
+@media (max-width: 42em) {
+	.breadcrumb .icon {
+		font-size: 16px;
+	}
 }
 body,
 input {
@@ -927,7 +925,7 @@ select {
 }
 .icon {
 	font-size:1.2em;
-	height:1.4em;/*1.2圖標壓迫名字*/
+	/*height:1.2em;1.2圖標壓迫名字*/
 	width:1.4em;
 	display:inline-block;
 	text-align:center;
@@ -962,12 +960,13 @@ ul.dir li .entry-panel .file-menu-button {
 	/*文件菜單小按鈕*/
 	padding:.3em;
 	margin-left:.1em;
-	height: fit-content;
+	height: 22px;
 	vertical-align:middle;
 }
 button.small {
 	padding: .5em;
-	height: 30px;
+	min-height: 22px;
+    height: 22px;
 }
 .error-msg {
 	background-color:#faa;
@@ -1038,14 +1037,18 @@ header {
 #filter-bar span:empty {
 	display:none;
 }
+/**/
 :root .theme-dark #root .dialog-backdrop {
-    background: var(--deepprevew);
+	background: none;
+    backdrop-filter: none;
 }
 .dialog-backdrop {
 	position:fixed;
 	inset:0;
-	background:var(--button-bg);
-	/*backdrop-filter: blur(2px);*/
+	/*background:var(--button-bg);
+	backdrop-filter: blur(2px);*/
+	background: none;
+    backdrop-filter: none;
 	display:flex;
 	justify-content:center;
 	align-items:center;
@@ -1064,9 +1067,10 @@ header {
 	flex-direction:column;
 	justify-content:center;
 	overflow: visible;
-	font-size: 90%;
+	/*font-size: 90%;*/
 	z-index:10;
 	box-shadow: 4px 6px 5px 0px #00000060;
+	backdrop-filter: blur(5px);
 }
 .dialog-icon {
 	color:var(--button-text);
@@ -1155,16 +1159,17 @@ input[type=checkbox]:checked {
 	margin: 0;
 	font-size: 14px;
 }
-/*播放器内標題*/
+
+/*播放器内標題
 @supports (width: min(1px,2px)) {
 	#root .file-show {
 		--nav-size: min(25vh, 25vw, 13em);
 		font-size: 12px;
-/*color: var(--mild-contrast);		fixtemp*/
 		
 	}
 
-}
+}*/
+
 /*
 #preview-content {
 background: #18181b;
@@ -1173,9 +1178,20 @@ padding: 2em 2em;
 border-radius: 0.5em;
 }*/
 
+/*
+video {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  filter: none !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+*/
 .toasts {
   position: fixed;
-  top: 0;
+  top: 30px;
   right: 0;
   display: flex;
   flex-direction: column;
@@ -1188,14 +1204,14 @@ border-radius: 0.5em;
 .toast {
   background-color: var(--bg);
   color: var(--button-text);
-  transition: all 0.2s ease-in;
+  transition: all 0.1s ease-in;
   display: flex;
   align-items: center;
   padding: 0.6em;
   border: 1px solid var(--button-text);
   border-radius: 0.4em;
   box-shadow: 0 0 0.3em rgba(136, 136, 136, 0);
-  backdrop-filter: blur(2px);
+  /*backdrop-filter: blur(2px);*/
   font-size: 90%;
   transform: translateX(0);
   /* 新增：防止内容过长溢出 */
@@ -1214,7 +1230,7 @@ border-radius: 0.5em;
   padding: 0;
   margin-top: -0.6em;
   opacity: 0;
-  transition: all 0.2s ease-in;
+  transition: all 0.1s ease-in;
 }
 
 body  {
