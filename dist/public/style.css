@@ -58,7 +58,7 @@
 }
 :root .theme-dark .dialog-backdrop {
 	/*backdrop-filter:blur(1px);*/
-  background-color:var(--deepprevew);
+    background-color:var(--deepprevew);
 }
 :root .theme-dark .error-msg {
 	color:#b88;
@@ -66,11 +66,13 @@
 }
 /*admin按鈕*/
 :root .theme-dark button.toggled {
-	text-shadow: 0 0 8px var(--good-contrast);
+	/*text-shadow: 0 0 8px var(--good-contrast);*/
+	text-shadow: none;
 	color:var(--button-text);
 }
 :root .theme-light button.toggled {
-	text-shadow: 0 0 6px  var(--good-contrast);
+	/*text-shadow: 0 0 8px var(--good-contrast);*/
+	text-shadow: none;
 	color: var(--button-text);
 }
 
@@ -96,26 +98,17 @@ font-family: poppins;
 font-size:12pt;
 }*/
 header {
-	/*按鈕欄*/
-	/*background-image: -webkit-linear-gradient(#1b1a19, #1b1a19 10%, #1b1a19);
-	background-image: -o-linear-gradient(#1b1a19, #1b1a19 10%, #1b1a19);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#1b1a19), color-stop(10%, #1b1a19), to(#1b1a19));
-	background-image: linear-gradient(#1b1a19, #1b1a19 10%, #1b1a19);
-	background-repeat: no-repeat;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff484e55', endColorstr='#ff313539', GradientType=0);
-	-webkit-filter: none;*/
-	filter: none;
 	font-size: 14px;
 	top: 0;
 	padding: .2em;
 	margin: -0.1em;
-	backdrop-filter:blur(20px);
+	backdrop-filter:blur(6px);
 	z-index: 3;
 	border: 1px solid var(--faint-contrast);
 	border-radius: 0.4em;
 	position:sticky;
-	text-shadow: 0px 0px 2px var(--bg);
-  box-shadow: 0px 6px 9px 0px #0000006b;
+	text-shadow:none;
+    box-shadow: 0px 6px 2px 0px #0000006b;
 }
 kbd {
 	background-color:var(--button-bg);
@@ -129,7 +122,8 @@ kbd {
 	padding:2px 4px;
 	white-space:nowrap;
 	margin-right:.5em;
-	box-shadow: 0 0 0px rgba(0, 0, 0, .2), 0 0 rgba(255, 255, 255, .1) inset;
+	/*box-shadow: 0 0 0px rgba(0, 0, 0, .2), 0 0 rgba(255, 255, 255, .1) inset;*/
+	box-shadow: none;
 }
 #root {
 	max-width: 100%;
@@ -144,7 +138,7 @@ kbd {
 	text-align: left;
 	/*center會影響文件文字間距*/
 	text-overflow: ellipsis;
-	box-shadow: 1px 4px 5px 0px #0000004f;
+	/*box-shadow: 1px 4px 2px 0px #0000004f;多餘*/
 }
 .list-wrapper {
 	/*整個文件列表外框架*/
@@ -172,16 +166,16 @@ kbd {
 	display: inline-block;
 	min-width: 10px;
 	text-align: center;
-	text-shadow: 0px 0px 2px var(--bg);
+	text-shadow:none;
 	word-break: break-word;
 	transition: all 0.25s ease;
 	/*backdrop-filter:blur(1px);模糊*/
 	z-index: 10;
 	height: 25px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 8em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 8em;
 }
 /*.breadcrumb:nth-child(-n+3) .icon { */
 .breadcrumb:nth-child(-n+3) {
@@ -196,7 +190,8 @@ kbd {
 }
 .breadcrumb:hover {
 	background-color: var(--button-bg-hover);
-	text-shadow: 0px 0px 1px var(--bg);
+	/*text-shadow: 0px 0px 1px var(--bg);*/
+	text-shadow: none;
 }
 ul.dir {
 	/*小播放按鈕 時間日期 標簽*/
@@ -411,7 +406,7 @@ button#select-button.toggled .icon {
 	z-index:1;
 }
 #paging button {
-    box-shadow: 0 0 .3em .3em rgba(0, 0, 0, .0);
+    box-shadow: none;
 }
 #paging #paging-middle {
 	padding:0 .4em;
@@ -551,6 +546,7 @@ button#select-button.toggled .icon {
 	gap:.5em;
 	z-index: 3;
 	backdrop-filter: blur(2px);
+	box-shadow: none;
 }
 .tiles-mode {
 	/*大圖標間距*/
@@ -680,7 +676,7 @@ background-color:#18181b
 	font-size: 10px;
 	/*控制預覽標題文字*/
 	--nav-size: min(25vh, 25vw, 13em)/* --nav-size: min(25vh, 25vw)*/;
-	/*backdrop-filter:blur(2px);*/
+	backdrop-filter:none;
 }
 .fullWidth {
 	.showing-container, .showing {
@@ -765,10 +761,11 @@ background-color:#18181b
 	align-items:center;
 	justify-content:flex-end;
 	gap:.2em .2em;
-    background: var(--bg);
-    backdrop-filter: blur(5px);
     border-bottom: 1px solid var(--ghost-contrast);
 	border-top: 1px solid var(--ghost-contrast);
+	backdrop-filter: blur(2px);
+	/*background-color: var(--bg);
+	background: var(--bg);*/
 }
 #root .file-show .bar .entry-ts {
 	display:inherit;
@@ -789,8 +786,8 @@ background-color:#18181b
     text-align: center;
     display: flex;
     justify-content: center;
-    text-shadow: 0 0 black;
-    color: var(--link);
+    text-shadow:none;
+    color: var(--text);
 }
 button {
 	/*上工具欄*/
@@ -802,7 +799,7 @@ button {
 	vertical-align: middle;
 	cursor: pointer;
 	border: 1px solid var(--faint-contrast);
-	text-shadow: 0px 0px 2px var(--bg);
+	text-shadow:none;
 	font-size: 14px;
 	font-weight: bold;
 	/*backdrop-filter:blur(1px);模糊*/
@@ -813,7 +810,7 @@ button:hover {
 	background-color: var(--button-text);
 	/*color: var(--button-bg-hover);*/
 	color: var(--bg);
-	text-shadow: 0px 0px 2px var(--bg);
+	text-shadow:none;
 	outline:1px solid var(--button-text);
 }
 button[disabled] {
@@ -901,12 +898,80 @@ textarea {
 	width:100%;
 }
 input[type=range] {
-	width:calc(100% - 1px);
+    width: calc(100% - 1px);
+    appearance: none;
+    position: relative;
+    height: 0.6em;
+    cursor: pointer;
+    border-radius: 0.25em;
+    background: var(--faint-contrast);
+    /* 移除默认的轨道和滑块样式 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
+
+/* 滑块样式 - WebKit浏览器 (Chrome, Safari, Edge) */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0.6em;
+    height: 1.2em;
+    border-radius: 10%;
+    background: var(--text); /* 修改滑块颜色 */
+    cursor: pointer;
+}
+
+/* 滑块样式 - Firefox */
+input[type=range]::-moz-range-thumb {
+    width: 0.6em;
+    height: 1.2em;
+    border-radius: 10%;
+    background: var(--text); /* 修改滑块颜色 */
+    cursor: pointer;
+}
+
 input[type=checkbox] {
-	transform:scale(1.7);
-	accent-color:var(--button-bg);
+    /* 隐藏原生复选框 */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    /* 自定义尺寸 */
+    width: .8em;
+    height: .8em;
+    
+    /* 基础样式 */
+    border: 1px solid var(--good-contrast);
+    border-radius: 0.1em;
+    background-color: var(--button-bg);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
 }
+
+/* 选中状态 */
+input[type=checkbox]:checked {
+    background-color: var(--button-bg);
+    border-color: var(--good-contrast);
+}
+
+/* 添加勾选标记 */
+input[type=checkbox]:checked::before {
+    content: "■";
+    position: absolute;
+    color: var(--text);
+    font-size: 0.6em;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 聚焦状态 */
+input[type=checkbox]:focus {
+    outline: 1px solid var(--good-contrast);
+    outline-offset: -2px;
+}
+
 textarea {
 	font-size:14pt;
 }
@@ -1037,7 +1102,7 @@ header {
 #filter-bar span:empty {
 	display:none;
 }
-/**/
+
 :root .theme-dark #root .dialog-backdrop {
 	background: none;
     backdrop-filter: none;
@@ -1070,7 +1135,7 @@ header {
 	/*font-size: 90%;*/
 	z-index:10;
 	box-shadow: 4px 6px 5px 0px #00000060;
-	backdrop-filter: blur(5px);
+	backdrop-filter: blur(4px);
 }
 .dialog-icon {
 	color:var(--button-text);
@@ -1142,16 +1207,6 @@ header {
 .dialog-alert-error {
 	--color: #822;
 }
-input[type=checkbox]:focus {
-	outline: 1px dotted var(--button-text);
-	outline-offset: -2px;
-}
-input[type=checkbox]:checked {
-	color: var(--button-text);
-	outline: 1px dotted var(--button-text);
-	outline-offset: -2px;
-}
-
 
 .file-dialog-properties {
 	word-break: break-word;
