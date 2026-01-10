@@ -845,6 +845,7 @@ ul a:focus-visible {
 	border-color:transparent;
 	outline:1px solid var(--button-text);
 }
+
 /*
 @media (min-width: 1900px) {
 	#player {
@@ -870,18 +871,22 @@ ul a:focus-visible {
 	font-size: 90%;
 	font-weight: bold;
 }*/
+
 @media (max-width: 42em) {
 	.breadcrumb .icon {
 		font-size: 16px;
 	}
 }
+
 body,
 input {
 	color:var(--text);
 }
+
 code {
 	font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace;
 }
+
 input:not([type=checkbox],
 [type=range]),
 select,
@@ -901,9 +906,9 @@ input[type=range] {
     width: calc(100% - 1px);
     appearance: none;
     position: relative;
-    height: 0.6em;
+    height: 0.4em;
     cursor: pointer;
-    border-radius: 0.25em;
+    border-radius: 0.15em;
     background: var(--faint-contrast);
     /* 移除默认的轨道和滑块样式 */
     -webkit-appearance: none;
@@ -915,7 +920,7 @@ input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 0.3em;
-    height: 1.2em;
+    height: 1.4em;
     border-radius: 10%;
     background: var(--text); /* 修改滑块颜色 */
     cursor: pointer;
@@ -924,7 +929,7 @@ input[type=range]::-webkit-slider-thumb {
 /* 滑块样式 - Firefox */
 input[type=range]::-moz-range-thumb {
     width: 0.3em;
-    height: 1.2em;
+    height: 1.4em;
     border-radius: 10%;
     background: var(--text); /* 修改滑块颜色 */
     cursor: pointer;
