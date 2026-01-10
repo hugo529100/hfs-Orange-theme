@@ -6,7 +6,7 @@
 	--background: #ffffffba;
 	--background-color:#ffffff;
 	--ghost-contrast: rgba(128, 128, 128, 0.062);
-	--faint-contrast: #7676763b;
+	--faint-contrast: #54545460;
 	--faint-contrast-trans: #76767663;
 	--mild-contrast: rgba(77, 77, 77, 0.267);
 	--comment-contrast: rgba(58, 58, 58, 0.85);
@@ -28,7 +28,7 @@
 	--button-bg: #16141100;
 	color-scheme: dark;
 	--ghost-contrast: rgba(48, 48, 48, 0.16);
-	--faint-contrast: rgba(58, 58, 58, 0.92);
+	--faint-contrast: rgba(106, 106, 106, 0.438);
 	--mild-contrast: rgba(58, 58, 58, 0.267);
 	--comment-contrast: rgba(158, 158, 158, 0.65);
 	--grid-contrast: rgba(48, 48, 48, 0.48);
