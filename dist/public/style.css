@@ -920,7 +920,7 @@ input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 0.3em;
-    height: 1.4em;
+    min-height: 1.4em;
     border-radius: 10%;
     background: var(--text); /* 修改滑块颜色 */
     cursor: pointer;
