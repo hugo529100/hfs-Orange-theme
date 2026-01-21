@@ -17,7 +17,7 @@
 	--focus-color: #1f140cdb;
 	--separator: " – ";
 	--success: #ffffffd8;
-	--deepprevew: #000000f6;
+	--deepprevew: #dbdbdb;
 }
 :root .theme-dark {
 	--bg:rgba(8,5,0,0.74);
@@ -38,6 +38,7 @@
 	--success: #0b0a09ab;
 	--warning: #0b0a09ab;
 	--link: #ff9900;
+		--deepprevew: #000000f6;
 }
 :root .theme-dark .highlightedText,
 :root .theme-dark .file-menu a:hover,
@@ -108,7 +109,7 @@ header {
 	border-radius: 0.4em;
 	position:sticky;
 	text-shadow:none;
-                box-shadow: 0px 6px 2px 0px #0000006b;
+    box-shadow: 0px 6px 2px 0px #00000047;
 }
 kbd {
 	background-color:var(--button-bg);
@@ -369,7 +370,7 @@ button#select-button.toggled .icon {
 	animation:1s fade-in;
 }
 .dialog-content {
-	padding:.8em /*上傳框等各種*/;
+	padding:0.4em;/*上傳框等各種*/
 }
 .dialog-alert .dialog-content {
 	text-align:center;
@@ -426,7 +427,7 @@ button#select-button.toggled .icon {
 	background:var(--button-bg);
 	text-align:center;
 	white-space:nowrap;
-	padding:.1em;
+	padding:.3em;
 }
 .upload-toolbar {
 	position:sticky;
@@ -763,9 +764,8 @@ background-color:#18181b
 	gap:.2em .2em;
     border-bottom: 1px solid var(--ghost-contrast);
 	border-top: 1px solid var(--ghost-contrast);
-	backdrop-filter: blur(2px);
-	/*background-color: var(--bg);
-	background: var(--bg);*/
+	/*backdrop-filter: blur(2px);*/
+	background: var(--deepprevew);
 }
 #root .file-show .bar .entry-ts {
 	display:inherit;
@@ -1251,7 +1251,7 @@ video {
 */
 .toasts {
   position: fixed;
-  top: 30px;
+  top: 18px;/* 避開播放界面關閉按鈕 */
   right: 0;
   display: flex;
   flex-direction: column;
@@ -1264,16 +1264,17 @@ video {
 .toast {
   background-color: var(--bg);
   color: var(--button-text);
-  transition: all 0.1s ease-in;
+  transition: all 0s ease-in;
   display: flex;
   align-items: center;
   padding: 0.6em;
   border: 1px solid var(--button-text);
   border-radius: 0.4em;
-  box-shadow: 0 0 0.3em rgba(136, 136, 136, 0);
-  /*backdrop-filter: blur(2px);*/
-  font-size: 90%;
+  box-shadow: none;
+  backdrop-filter: none;
+  font-size: 70%;
   transform: translateX(0);
+  transition-duration: 0.1s;
   /* 新增：防止内容过长溢出 */
   max-width: 350px; /* 限制最大宽度（可调整） */
   width: auto;      /* 自动宽度，但不超过 max-width */
@@ -1283,6 +1284,7 @@ video {
 
 .toast.before {
   transform: translateX(100%);
+  transition: all 0s ease-in;
 }
 
 .toast.after {
@@ -1290,7 +1292,13 @@ video {
   padding: 0;
   margin-top: -0.6em;
   opacity: 0;
-  transition: all 0.1s ease-in;
+  transition: all 0s ease-in;
+  transition-duration: 0.1s;
+}
+
+.toast .toast-icon {
+    margin-right: .3em;
+    animation: zoomRotating 0.1s;
 }
 
 body  {
@@ -1305,3 +1313,4 @@ body  {
   -webkit-tap-highlight-color: transparent !important;
   tap-highlight-color: transparent !important;
 }
+
