@@ -1,7 +1,7 @@
 
 :root {
 	height: 100dvh;
-	--bg: #ffffffa6;
+	--bg: #ffffffd1;
 	--text: #1f140cdb;
 	--background: #ffffffba;
 	--background-color:#ffffff;
@@ -79,7 +79,8 @@
 
 :root .toggled {
 	background-color:var(--button-bg);
-	text-shadow: 0 0 1px var(--bg);
+	/*text-shadow: 0 0 1px var(--bg);*/
+	text-shadow: 0 0 1px var(--mild-contrast);
 }
 
 
@@ -293,12 +294,12 @@ ul.dir li.page-separator:before {
 	font-size:smaller;
 	margin-left:calc(50% - 1em);
 	opacity:.9;
-  animation: blink 0.8s step-start 0s infinite;
+    animation: blink 0.8s step-start 0s infinite;
 }
 #paging button.toggled {
 	border: 1px solid var(--good-contrast);
- border-radius: 0.4em;
-animation: blink 1.6s infinite;
+    border-radius: 0.4em;
+animation: blink 1.2s infinite;
 }
 .entry-comment {
 	/*小標簽*/
@@ -379,12 +380,13 @@ button#select-button.toggled .icon {
 	text-align:left;
 	display:inline-block;
 }
+
+/*
 .dialog {
 	min-width:11em;
 	font-size: 80%;
-	/*--color: var(--button-bg)*/
 	background-color:var(--bg);
-}
+}*/
 .dialog-icon .icon {
 	margin-left:-1px;
 	font-size:95%;
@@ -589,6 +591,7 @@ button#select-button.toggled .icon {
 }
 .tiles-mode ul.dir li .link-wrapper a span {
 	display:block;
+	/margin-bottom: 5px;/*文件名與圖標間距*/
 }
 .tiles-mode ul.dir li .link-wrapper a .icon.icon {
     font-size: calc(2.2rem + .54rem * var(--tile-size));
@@ -1126,13 +1129,13 @@ header {
 }
 .dialog {
 	padding:max(.5em,1vw,2vh);
-	padding-top:0;
+	padding-top: 10px;
 	border: 1px solid var(--good-contrast);
 	border-radius:0.4em;
 	position:relative;
 	margin:0 3vw;
 	overflow:hidden;
-	max-height:calc(100vh - 2em);
+	max-height:calc(100vh - 6em);
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
@@ -1141,6 +1144,10 @@ header {
 	z-index:10;
 	box-shadow: 4px 6px 5px 0px #00000060;
 	backdrop-filter: blur(4px);
+	min-width:11em;
+	font-size: 75%;
+	/*--color: var(--button-bg)*/
+	background-color:var(--bg);
 }
 .dialog-icon {
 	color:var(--button-text);
@@ -1301,12 +1308,12 @@ video {
     animation: zoomRotating 0.1s;
 }
 
-body  {
+/*body  {
   background: 
     radial-gradient(circle at 1px 1px, rgba(150, 150, 150, 0.15) 1px, transparent 1px),
-    white;
+    var(--bg);
   background-size: 8px 8px;
-}
+}*/
 
 
 * {
