@@ -1112,8 +1112,8 @@ header {
 }
 
 :root .theme-dark #root .dialog-backdrop {
-	background: none;
     backdrop-filter: none;
+	background: none !important;
 }
 .dialog-backdrop {
 	position:fixed;
