@@ -38,7 +38,7 @@
 	--success: #0b0a09ab;
 	--warning: #0b0a09ab;
 	--link: #ff9900;
-		--deepprevew: #000000f6;
+               --deepprevew: #000000f6;
 }
 :root .theme-dark .highlightedText,
 :root .theme-dark .file-menu a:hover,
@@ -591,7 +591,7 @@ button#select-button.toggled .icon {
 }
 .tiles-mode ul.dir li .link-wrapper a span {
 	display:block;
-	/margin-bottom: 5px;/*文件名與圖標間距*/
+	margin-bottom: 6px;/*文件名與圖標間距*/
 }
 .tiles-mode ul.dir li .link-wrapper a .icon.icon {
     font-size: calc(2.2rem + .54rem * var(--tile-size));
@@ -1281,7 +1281,7 @@ video {
   backdrop-filter: none;
   font-size: 70%;
   transform: translateX(0);
-  transition-duration: 0.1s;
+  transition-duration: 0.3s;
   /* 新增：防止内容过长溢出 */
   max-width: 350px; /* 限制最大宽度（可调整） */
   width: auto;      /* 自动宽度，但不超过 max-width */
