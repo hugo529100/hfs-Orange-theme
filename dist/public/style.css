@@ -999,6 +999,7 @@ select {
 .icon {
 	font-size:1.2em;
 	/*height:1.2em;1.2圖標壓迫名字*/
+	height: auto;
 	width:1.4em;
 	display:inline-block;
 	text-align:center;
