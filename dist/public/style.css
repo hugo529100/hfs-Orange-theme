@@ -177,7 +177,7 @@ kbd {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 8em;
+    max-width: -webkit-fill-available;/*修復路徑穿透*/
 }
 /*.breadcrumb:nth-child(-n+3) .icon { */
 .breadcrumb:nth-child(-n+3) {
@@ -214,8 +214,14 @@ ul.dir li {
 	padding: .2em;
 	/*列表上下間距*/
 	border-bottom: 0.5px solid var(--faint-contrast);
-	/*下劃綫*/;
 }
+
+.list-wrapper.list-mode[style*="--tile-size: 0"] .entry-name {
+    max-width: calc(100% - 13em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 ul.dir li:nth-of-type(odd) {
 	background-color:var(--ghost-contrast);
 }
@@ -256,6 +262,8 @@ ul.dir li .link-wrapper a img.icon {
 	align-items:center;
 	/*後加*/
 	top:1px;
+	height:1.4em;/*縮略圖占比*/
+	object-fit: cover;/*拉滿裁切*/
 }
 ul.dir li .link-wrapper a:hover {
 	text-decoration:underline;
@@ -579,7 +587,7 @@ button#select-button.toggled .icon {
 	justify-content: space-evenly;
 }
 .tiles-mode ul.dir li .link-wrapper:not(:hover) {
-	max-height:var(--name-height);
+	/*max-height:var(--name-height);*/
 	display:block;
 	display:-webkit-box;
 	overflow:hidden;

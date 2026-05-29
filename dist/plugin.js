@@ -1,4 +1,4 @@
-exports.version = 4.61
+exports.version = 4.7
 exports.description = "To modifying the HFS3 interface to make it more suitable for daily management and browsing of images and videos."
 exports.apiRequired = 1
 exports.repo = "Hug3O/Orange-theme"
