@@ -1,7 +1,7 @@
 
 :root {
 	height: 100dvh;
-	--bg: #ffffffd1;
+	--bg: #ffffffdc;
 	--text: #1f140cdb;
 	--background: #ffffffba;
 	--background-color:#ffffff;
@@ -38,7 +38,7 @@
 	--success: #0b0a09ab;
 	--warning: #0b0a09ab;
 	--link: #ff9900;
-               --deepprevew: #000000f6;
+    --deepprevew: #000000f6;
 }
 :root .theme-dark .highlightedText,
 :root .theme-dark .file-menu a:hover,
@@ -67,12 +67,10 @@
 }
 /*admin按鈕*/
 :root .theme-dark button.toggled {
-	/*text-shadow: 0 0 8px var(--good-contrast);*/
 	text-shadow: none;
 	color:var(--button-text);
 }
 :root .theme-light button.toggled {
-	/*text-shadow: 0 0 8px var(--good-contrast);*/
 	text-shadow: none;
 	color: var(--button-text);
 }
@@ -110,7 +108,12 @@ header {
 	border-radius: 0.4em;
 	position:sticky;
 	text-shadow:none;
-    box-shadow: 0px 6px 2px 0px #00000047;
+    box-shadow: 0px 4px 2px 0px #00000028;
+	/*防止拖選*/
+	user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 kbd {
 	background-color:var(--button-bg);
@@ -124,7 +127,6 @@ kbd {
 	padding:2px 4px;
 	white-space:nowrap;
 	margin-right:.5em;
-	/*box-shadow: 0 0 0px rgba(0, 0, 0, .2), 0 0 rgba(255, 255, 255, .1) inset;*/
 	box-shadow: none;
 }
 #root {
@@ -140,7 +142,7 @@ kbd {
 	text-align: left;
 	/*center會影響文件文字間距*/
 	text-overflow: ellipsis;
-	/*box-shadow: 1px 4px 2px 0px #0000004f;多餘*/
+	box-shadow: none;
 }
 .list-wrapper {
 	/*整個文件列表外框架*/
@@ -204,7 +206,12 @@ ul.dir {
 	min-width: 100%;
 	max-width: 100%;
 	font-size: 14px;
-	/*text-shadow: 0px 0px 2px var(--bg);*/;
+	text-shadow: none;
+	/*防止拖選*/
+	user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 ul.dir li {
 	/*小圖標列表*/
@@ -631,7 +638,7 @@ button#select-button.toggled .icon {
 background-color:#18181b
 }*/
 .tiles-mode ul.dir li:hover {/*去掉縮略圖hover的背景*/
-    --bg: var(--bg);
+    --bg: none;
 }
 .tiles-mode ul.dir li .entry-panel {
 	justify-content:center;
@@ -687,7 +694,7 @@ background-color:#18181b
 #root .file-show {
 	font-size: 10px;
 	/*控制預覽標題文字*/
-	--nav-size: min(25vh, 25vw, 13em)/* --nav-size: min(25vh, 25vw)*/;
+	--nav-size: min(25vh, 25vw, 13em);/* --nav-size: min(25vh, 25vw)*/
 	backdrop-filter:none;
 }
 .fullWidth {
@@ -813,7 +820,7 @@ button {
 	text-shadow:none;
 	font-size: 14px;
 	font-weight: bold;
-	/*backdrop-filter:blur(1px);模糊*/
+	backdrop-filter:none;
 	transition: all 0.25s ease;
 
 }
@@ -973,13 +980,13 @@ input[type=checkbox]:checked {
 
 /* 添加勾选标记 */
 input[type=checkbox]:checked::before {
-    content: "■";
-    position: absolute;
+    content: "■"; 
     color: var(--text);
     font-size: 0.6em;
-    top: 52%;
+	position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -55%);
 }
 
 /* 聚焦状态 */
@@ -1060,6 +1067,7 @@ button.small {
 header {
 	background-color:var(--bg);
 }
+
 @keyframes blink {
 	0% {
 		opacity:1;
@@ -1082,12 +1090,14 @@ header {
 	}
 }
 
+
 .spinner,.icon.spinner:before {
 	animation:1.5s spin infinite linear;
 	display:inline-flex;
 	justify-content:center;
 	align-items:center;
 }
+
 #folder-stats,
 #filter-bar>span {
 	font-size:80%;
@@ -1127,8 +1137,6 @@ header {
 .dialog-backdrop {
 	position:fixed;
 	inset:0;
-	/*background:var(--button-bg);
-	backdrop-filter: blur(2px);*/
 	background: none;
     backdrop-filter: none;
 	display:flex;
@@ -1196,11 +1204,12 @@ header {
 	border-radius:0 .3em;
 	right:0;
 	padding:0;
-	background-color:rgba(139, 3, 3, 0.521);
+	background-color:rgba(139, 3, 3, 0.582);
 }
 .dialog-icon~
 .dialog-content {
 	margin-top:1em;
+	scrollbar-width: none;
 }
 .dialog-type {
 	left:0;
