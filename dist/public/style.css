@@ -102,13 +102,13 @@ header {
 	top: 0;
 	padding: .2em;
 	margin: -0.1em;
-	backdrop-filter:blur(6px);
 	z-index: 3;
 	border: 1px solid var(--faint-contrast);
 	border-radius: 0.4em;
 	position:sticky;
 	text-shadow:none;
     box-shadow: 0px 4px 2px 0px #00000028;
+	backdrop-filter:blur(4px);
 	/*防止拖選*/
 	user-select: none;
     -webkit-user-select: none;
@@ -374,7 +374,7 @@ button .label {
 }
 
 button#user-button.toggled .icon {
-	animation: blink 1.6s step-start 0s infinite;
+	animation: blink 1.6s infinite;
 }
 button#select-button.toggled .icon {
 	animation: blink 1s step-start 0s infinite;
@@ -656,9 +656,12 @@ background-color:#18181b
 	top:.3em;
 	right:1em;
 }
+
 .tiles-mode ul.dir li .link-wrapper a {
-	display:inline;
+	display:block;
+	margin:auto;
 }
+	
 .tiles-mode ul.dir li:hover {
 	/*--bg: #1717171e;*/
 	background:var(--bg);
