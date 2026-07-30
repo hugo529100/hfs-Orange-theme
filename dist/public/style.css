@@ -427,7 +427,7 @@ button#select-button.toggled .icon {
     box-shadow: none;
 }
 #paging #paging-middle {
-	padding:0 .4em;
+	padding:1px .4em;
 	margin:0 -.3em;
 	display:flex;
 	gap:.1em;
@@ -1342,3 +1342,9 @@ video {
   tap-highlight-color: transparent !important;
 }
 
+.bottom-bar-stack-positioner {
+    width: 100%;
+    box-shadow: none;
+    background: none;
+    padding: 0px;
+}
