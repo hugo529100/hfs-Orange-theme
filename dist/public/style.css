@@ -316,26 +316,28 @@ ul.dir li.page-separator:before {
     border-radius: 0.4em;
 animation: blink 1.2s infinite;
 }
+.tiles-mode ul.dir li .entry-comment {
+	max-height: 1.1em;
+	margin-bottom: -2px;
+}
 .entry-comment {
 	/*小標簽*/
-	font-size:10px;
+	font-size:0.7em;
 	color: var(--comment-contrast);
 }
 .entry-comment:after {
 	/*font-family:serif;*/
 	line-height:1px;
 	position:relative;
+	content:"”";
+	top:.2em;
+	margin-left:.1em;
 }
 .entry-comment:before {
 	content:"“";
 	margin-left:.5em;
 	margin-right:.1em;
 	top:.2em;
-}
-.entry-comment:after {
-	content:"”";
-	top:.2em;
-	margin-left:.1em;
 }
 #menu-bar {
 	margin-bottom:.1em;/*按鈕上下行間距*/
@@ -711,7 +713,7 @@ background-color:#18181b
 	display:flex;
 	justify-content:center;
 	align-items:center;
-    
+    background: black !important; /*視頻背景*/
 }
 #root .file-show .showing {
 	/*留邊縫修正max-width:calc(100% - var(--nav-size) * 0.1);
