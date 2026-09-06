@@ -428,6 +428,10 @@ button#select-button.toggled .icon {
     box-shadow: none;
 }
 
+#paging button:hover {
+    color:var(--text);
+}
+
 #paging .font-icon {
     font-size: 0.8em;
 }
@@ -441,7 +445,6 @@ button#select-button.toggled .icon {
 	overflow-x:auto;
 }
 #paging #paging-middle>button {
-	/*font-family: poppins;*/
 	flex:1;
 	padding-top:0;
 	padding-bottom:0;
