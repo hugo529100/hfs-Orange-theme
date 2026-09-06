@@ -314,8 +314,6 @@ ul.dir li.page-separator:before {
 #paging button.toggled {
 	border: 1px solid var(--good-contrast);
 	border-bottom: none;
-	    color: var(--bg);
-    background-color: var(--text);
 }
 .tiles-mode ul.dir li .entry-comment {
 	max-height: 1.1em;
