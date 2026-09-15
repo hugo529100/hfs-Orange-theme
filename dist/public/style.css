@@ -1146,6 +1146,12 @@ header {
     backdrop-filter: none;
 	background: none !important;
 }
+
+:root #root .dialog-backdrop {
+    backdrop-filter: none;
+    background: none !important;
+}
+
 .dialog-backdrop {
 	position:fixed;
 	inset:0;
@@ -1169,13 +1175,14 @@ header {
 	flex-direction:column;
 	justify-content:center;
 	overflow: visible;
-	/*font-size: 90%;*/
 	z-index:10;
 	box-shadow: 4px 6px 5px 0px #00000060;
 	backdrop-filter: blur(4px);
 	min-width:11em;
 	font-size: 75%;
-	/*--color: var(--button-bg)*/
+	/*--color: var(--button-bg)
+	left: auto !important;
+    top: auto !important;*/
 	background-color:var(--bg);
 }
 .dialog-icon {
@@ -1359,4 +1366,8 @@ video {
 	backdrop-filter: blur(3px);
     background-color: var(--bg);
 	bottom: -3px !important;
+}
+
+button.as-text {
+    width: 100%;
 }
