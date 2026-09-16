@@ -588,7 +588,7 @@ button#select-button.toggled .icon {
 .tiles-mode ul.dir {
 	display:grid;
 	grid-template-columns:repeat(auto-fill,minmax(var(--tile-width),1fr));
-	grid-auto-rows:calc(var(--name-height) + 1.3em);
+	grid-auto-rows:calc(var(--name-height) + 2.0em);
 	gap:0 2px;
 	row-gap:2px;
 }
@@ -617,7 +617,9 @@ button#select-button.toggled .icon {
 }
 .tiles-mode ul.dir li .link-wrapper a span {
 	display:block;
-	/*margin-bottom: 1vw;文件名與圖標間距*/
+	margin-bottom: 0.3vh;/*文件名與圖標間距*/
+	line-height: 0.98;
+	font-size: 95%;
 }
 .tiles-mode ul.dir li .link-wrapper a .icon.icon {
     font-size: calc(2.2rem + .54rem * var(--tile-size));
@@ -1061,8 +1063,9 @@ ul.dir li .entry-panel .file-menu-button {
 	/*文件菜單小按鈕*/
 	padding:.3em;
 	margin-left:.1em;
-	height: 22px;
 	vertical-align:middle;
+    opacity: 0.4;
+    margin-top: 2px;
 }
 button.small {
 	padding: .5em;
