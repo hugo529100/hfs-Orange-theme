@@ -275,6 +275,7 @@ ul.dir li .link-wrapper a img.icon {
 ul.dir li .link-wrapper a:hover {
 	text-decoration:underline;
 }
+
 ul.dir li .entry-panel {
 	float:right;
 	padding-top:.3em;
@@ -674,7 +675,15 @@ background-color:#18181b
 	display:block;
 	margin:auto;
 }
-	
+
+/*禁用拖拽外框*/
+.link-wrapper a,
+.link-wrapper a:focus,
+.link-wrapper a:focus-visible,
+.link-wrapper a:active {
+  outline: none;
+}
+
 .tiles-mode ul.dir li:hover {
 	/*--bg: #1717171e;*/
 	background:var(--bg);
@@ -776,11 +785,11 @@ background-color:#18181b
 	opacity:0.0;
 	color: rgb(80, 80, 80);
 	user-select:none;
-	transition:opacity .3s;
+	transition:opacity 0.7s;
 	z-index:10;
 }
 #root .file-show .nav:hover {
-	opacity:.3;
+	opacity:.6;
 	z-index:10;
 }
 #root .file-show .nav
@@ -1373,3 +1382,78 @@ video {
 button.as-text {
     width: 100%;
 }
+
+/* ===== 列表模式：flex 布局 + 单行省略 + hover 展开 ===== */
+
+/* li 用 flex：左文件名可收缩，右 panel 固定 */
+.list-wrapper:not(.tiles-mode) ul.dir li {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+/* 左侧链接区：可收缩，min-width:0 是关键 */
+.list-wrapper:not(.tiles-mode) ul.dir li > .link-wrapper {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: block;
+    overflow: hidden;
+}
+
+/* 文件名：跟随 link-wrapper 宽度，自动省略 */
+.list-wrapper:not(.tiles-mode) ul.dir li .entry-name {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+/* 右侧 panel：按内容宽度，不收缩 */
+.list-wrapper:not(.tiles-mode) ul.dir li > .entry-panel {
+    flex: 0 0 auto;
+    float: none;
+    display: flex;
+    align-items: center;
+    gap: .6em;
+    padding-top: 0;
+}
+
+/* 那个 clear:both 的空 div 在 flex 下没用，隐藏掉 */
+.list-wrapper:not(.tiles-mode) ul.dir li > div:last-of-type {
+    display: none;
+}
+
+/* ===== hover 展开（合并版） ===== */
+@media (hover: hover) {
+    /* hover 时切回 block，让文件名能换行撑开，并浮到上层 */
+    .list-wrapper:not(.tiles-mode) ul.dir li:hover {
+        display: block;
+        position: relative;
+        z-index: 5;
+        background-color: var(--bg);
+        padding-bottom: 1em;   /* 多行时底部留空，不贴边框 */
+    }
+
+    /* panel 在 block 布局下仍靠右 */
+    .list-wrapper:not(.tiles-mode) ul.dir li:hover > .entry-panel {
+        float: right;
+        display: flex;
+    }
+
+    /* 文件名恢复换行 */
+    .list-wrapper:not(.tiles-mode) ul.dir li:hover .entry-name {
+        max-width: 100%;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        word-break: break-word;
+    }
+
+    /* 放开 ul.dir 的裁剪，避免展开被切掉 */
+    .list-wrapper:not(.tiles-mode) ul.dir:has(li:hover) {
+        overflow: visible;
+    }
+}
+
