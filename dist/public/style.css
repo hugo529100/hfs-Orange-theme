@@ -667,8 +667,8 @@ background-color:#18181b
 .tiles-mode ul.dir li input[type=checkbox] {
 	margin:0;
 	position:absolute;
-	top:.3em;
-	right:1em;
+	top:.5em;
+	right:.4em;
 }
 
 .tiles-mode ul.dir li .link-wrapper a {
@@ -983,8 +983,9 @@ input[type=checkbox] {
     -moz-appearance: none;
     
     /* 自定义尺寸 */
-    width: .8em;
-    height: .8em;
+	min-width: 0.7em;
+    width: .7em;
+    height: .7em;
     
     /* 基础样式 */
     border: 1px solid var(--good-contrast);
@@ -1426,23 +1427,32 @@ button.as-text {
 }
 
 /* ===== hover 展开（合并版） ===== */
+/* checkbox 固定为独立 flex item，不参与压缩/换行 */
+.list-wrapper:not(.tiles-mode) ul.dir li > .entry-checkbox {
+    flex: 0 0 auto;
+    align-self: flex-start;
+    margin-top: .3em;
+    width: .8em;
+    height: .8em;
+    min-width: .8em;
+    max-width: .8em;
+    box-sizing: border-box;
+}
+
 @media (hover: hover) {
-    /* hover 时切回 block，让文件名能换行撑开，并浮到上层 */
+    /* hover 时 li 仍是 flex，只是允许内部换行 */
     .list-wrapper:not(.tiles-mode) ul.dir li:hover {
-        display: block;
         position: relative;
         z-index: 5;
         background-color: var(--bg);
-        padding-bottom: 1em;   /* 多行时底部留空，不贴边框 */
+        padding-bottom: 1em;
+        align-items: flex-start;   /* 多行时 checkbox 对齐首行 */
     }
 
-    /* panel 在 block 布局下仍靠右 */
-    .list-wrapper:not(.tiles-mode) ul.dir li:hover > .entry-panel {
-        float: right;
-        display: flex;
+    /* 只让 link-wrapper 内部换行，checkbox 不受影响 */
+    .list-wrapper:not(.tiles-mode) ul.dir li:hover > .link-wrapper {
+        white-space: normal;
     }
-
-    /* 文件名恢复换行 */
     .list-wrapper:not(.tiles-mode) ul.dir li:hover .entry-name {
         max-width: 100%;
         white-space: normal;
@@ -1451,7 +1461,6 @@ button.as-text {
         word-break: break-word;
     }
 
-    /* 放开 ul.dir 的裁剪，避免展开被切掉 */
     .list-wrapper:not(.tiles-mode) ul.dir:has(li:hover) {
         overflow: visible;
     }
