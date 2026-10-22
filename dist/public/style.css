@@ -733,7 +733,7 @@ background-color:#18181b
 	display:flex;
 	justify-content:center;
 	align-items:center;
-    background: black !important; /*視頻背景*/
+    background: #000000cb !important; /*視頻背景*/
 }
 #root .file-show .showing {
 	/*留邊縫修正max-width:calc(100% - var(--nav-size) * 0.1);
@@ -1454,7 +1454,7 @@ button.as-text {
         white-space: normal;
     }
     .list-wrapper:not(.tiles-mode) ul.dir li:hover .entry-name {
-        max-width: 100%;
+        max-width: 82%;
         white-space: normal;
         overflow: visible;
         text-overflow: clip;
