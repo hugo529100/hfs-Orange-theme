@@ -53,6 +53,7 @@
 }
 :root .theme-dark .dialog-icon {
 	color:#ff9900;
+	display: none/*去掉左上角小圖標*/
 }
 :root .theme-dark .dialog-icon .icon {
 	color:#ff9900;
@@ -78,7 +79,7 @@
 :root .toggled {
 	background-color:var(--button-bg);
 	/*text-shadow: 0 0 1px var(--bg);*/
-	text-shadow: 0 0 1px var(--mild-contrast);
+	text-shadow: none;
 }
 
 
@@ -1213,7 +1214,7 @@ header {
 	justify-content:center;
 }
 .dialog-title {
-	font-size:80%;
+	font-size:90%;
 	margin:.3em 0;
 	padding:0 .5em;
 	min-height:1.2em;
@@ -1466,3 +1467,16 @@ button.as-text {
     }
 }
 
+:root .highlightedText,
+:root .file-menu a:hover,
+:root button.success {
+    background-color: var(--ghost-contrast);
+	text-shadow: none;
+}
+
+:root .theme-dark .highlightedText,
+:root .theme-dark .file-menu a:hover,
+:root .theme-dark button.success {
+	background-color: var(--ghost-contrast);
+    text-shadow: none;
+}
