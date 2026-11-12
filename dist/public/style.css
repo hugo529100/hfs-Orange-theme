@@ -340,6 +340,38 @@ ul.dir li.page-separator:before {
 	margin-right:.1em;
 	top:.2em;
 }
+
+
+/* 讓 menu-bar 成為容器 */
+#menu-bar {
+    container-type: inline-size;
+}
+
+/* 預設字體 */
+#menu-bar .label,
+#menu-bar .btn-label,
+#menu-bar .sync-label {
+    font-size: inherit;
+}
+
+/* toolbar 寬度逐漸變窄，文字跟著縮小 */
+@container (max-width: 1024px) {
+    #menu-bar .label,
+    #menu-bar .btn-label,
+    #menu-bar .sync-label {
+        font-size: clamp(8px, 1.3cqw, 14px);
+    }
+}
+
+/* 空間真的不足才隱藏 */
+@container (max-width: 800px) {
+    #menu-bar .label,
+    #menu-bar .btn-label,
+    #menu-bar .sync-label {
+        display: none;
+    }
+}
+
 #menu-bar {
 	margin-bottom:.1em;/*按鈕上下行間距*/
 	display:flex;
@@ -1365,11 +1397,11 @@ video {
   background-size: 8px 8px;
 }*/
 
-
 * {
   -webkit-tap-highlight-color: transparent !important;
   tap-highlight-color: transparent !important;
 }
+
 
 .bottom-bar-stack-positioner {
     width: 100%;
@@ -1383,6 +1415,20 @@ video {
 
 button.as-text {
     width: 100%;
+}
+
+:root .highlightedText,
+:root .file-menu a:hover,
+:root button.success {
+    background-color: var(--ghost-contrast);
+	text-shadow: none;
+}
+
+:root .theme-dark .highlightedText,
+:root .theme-dark .file-menu a:hover,
+:root .theme-dark button.success {
+	background-color: var(--ghost-contrast);
+    text-shadow: none;
 }
 
 /* ===== 列表模式：flex 布局 + 单行省略 + hover 展开 ===== */
@@ -1467,16 +1513,4 @@ button.as-text {
     }
 }
 
-:root .highlightedText,
-:root .file-menu a:hover,
-:root button.success {
-    background-color: var(--ghost-contrast);
-	text-shadow: none;
-}
 
-:root .theme-dark .highlightedText,
-:root .theme-dark .file-menu a:hover,
-:root .theme-dark button.success {
-	background-color: var(--ghost-contrast);
-    text-shadow: none;
-}
