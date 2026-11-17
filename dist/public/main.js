@@ -38,9 +38,10 @@ function normalizeEntries(root = document) {
 
 normalizeEntries();
 
-/* ===== 低性能瀏覽器模式（前台 Options 對話框勾選項） =====
+/* ===== 高性能模式（前台 Options 對話框勾選項） =====
    在前台頁面按齒輪「Options」打開的對話框內新增勾選項，
-   狀態存於 localStorage（每個瀏覽器各自記住），預設關閉。
+   狀態存於 localStorage（每個瀏覽器各自記住）。為了兼容大部分
+   移動設備，預設勾選（高性能）；取消勾選才是畫質模式。
    勾選後於 body 加上 .orange-low-perf，由 style.css 全局
    禁用陰影、模糊與非必要動畫。 */
 const LOW_PERF_CLASS       = 'orange-low-perf';
@@ -50,9 +51,10 @@ const LOW_PERF_CHECKBOX_ID = 'orange-low-perf-checkbox';
 
 function isLowPerformanceEnabled() {
   try {
-    return localStorage.getItem(LOW_PERF_STORAGE_KEY) === '1';
+    // 預設開啟：只有使用者明確關閉（存 '0'）才回到畫質模式
+    return localStorage.getItem(LOW_PERF_STORAGE_KEY) !== '0';
   } catch (e) {
-    return false;
+    return true;
   }
 }
 
@@ -88,7 +90,7 @@ function buildLowPerformanceOption() {
   });
 
   label.appendChild(checkbox);
-  label.appendChild(document.createTextNode('Low-performance browser mode'));
+  label.appendChild(document.createTextNode('High-performance mode'));
   panel.appendChild(label);
 
   return panel;

@@ -1514,7 +1514,8 @@ button.as-text {
 }
 
 /* ============================================================
-   低性能瀏覽器模式 / Low-performance browser mode
+   高性能模式 / High-performance mode（Options 勾選項，預設開啟；
+   不勾選＝畫質模式）
    由前台頁面「Options」對話框內的勾選項控制（main.js 注入）。
    勾選後 main.js 會給 body 加上 .orange-low-perf，
    以下規則全局禁用陰影、模糊與非必要動畫，以提升渲染性能。
