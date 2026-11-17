@@ -1513,4 +1513,123 @@ button.as-text {
     }
 }
 
+/* ============================================================
+   低性能瀏覽器模式 / Low-performance browser mode
+   由前台頁面「Options」對話框內的勾選項控制（main.js 注入）。
+   勾選後 main.js 會給 body 加上 .orange-low-perf，
+   以下規則全局禁用陰影、模糊與非必要動畫，以提升渲染性能。
+   ============================================================ */
+
+/* 1. 全局關閉陰影 */
+body.orange-low-perf,
+body.orange-low-perf *,
+body.orange-low-perf *::before,
+body.orange-low-perf *::after {
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+
+/* 2. 全局關閉背景模糊 */
+body.orange-low-perf,
+body.orange-low-perf *,
+body.orange-low-perf *::before,
+body.orange-low-perf *::after {
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}
+
+/* 2.1 全局關閉濾鏡模糊；但 Orange-8bit-filter 啟用時避讓，
+       保留它的 SVG 濾鏡（否則圖片／影片的 8bit 效果會被清掉）。 */
+:root:not([data-orange-filter]) body.orange-low-perf,
+:root:not([data-orange-filter]) body.orange-low-perf *,
+:root:not([data-orange-filter]) body.orange-low-perf *::before,
+:root:not([data-orange-filter]) body.orange-low-perf *::after {
+	filter: none !important;
+	-webkit-filter: none !important;
+}
+
+/* 3. 關閉非必要動畫與過渡，減少重繪與合成層 */
+body.orange-low-perf,
+body.orange-low-perf *,
+body.orange-low-perf *::before,
+body.orange-low-perf *::after {
+	animation: none !important;
+	transition: none !important;
+	scroll-behavior: auto !important;
+	will-change: auto !important;
+}
+
+/* 3.1 toast 依靠 transitionend 事件移除自己，必須保留其過渡，
+       否則提示彈出後永遠不會消失（成本極低，只在提示出現時觸發） */
+body.orange-low-perf .toast,
+body.orange-low-perf .toast.before,
+body.orange-low-perf .toast.after {
+	transition-property: all !important;
+	transition-timing-function: ease-in !important;
+}
+body.orange-low-perf .toast { transition-duration: 0.3s !important; }
+body.orange-low-perf .toast.before { transition-duration: 0s !important; }
+body.orange-low-perf .toast.after { transition-duration: 0.1s !important; }
+
+/* 4. 保留必要的載入指示動畫（spinner），否則載入時看起來像卡死 */
+body.orange-low-perf .spinner,
+body.orange-low-perf .icon.spinner::before {
+	animation: 1.5s spin infinite linear !important;
+}
+
+/* 5. 半透明色 → 實色：把主題的半透明色票換成「已和頁面底色合成」的不透明色，
+      視覺效果與原本相近，但瀏覽器不必再做 alpha 混合（少一層合成）。
+      數值 = 原色以頁面底色（日間 #fff／夜間 rgb(5 4 1)）預先疊算。
+      注意：Orange-8bit-filter 啟用時避讓，不用這裡的實色蓋掉它的整套配色。 */
+:root:not([data-orange-filter]) body.orange-low-perf:not(.theme-dark) {
+	--bg: #ffffff;
+	--background: #ffffff;
+	--background-color: #ffffff;
+	--text: #3f352e;
+	--button-text: #3f352e;
+	--focus-color: #3f352e;
+	--ghost-contrast: #f7f7f7;
+	--faint-contrast: #bfbfbf;
+	--faint-contrast-trans: #cacaca;
+	--mild-contrast: #cfcfcf;
+	--comment-contrast: #757575;
+	--good-contrast: #9e9e9e;
+	--grid-contrast: #e2e2e2;
+	--button-bg: #f5f5f5;
+	--success: #ffffff;
+	--deepprevew: #dbdbdb;
+}
+
+:root:not([data-orange-filter]) body.orange-low-perf.theme-dark {
+	--bg: #070500;
+	--background: #070500;
+	--text: #ff9900;
+	--button-text: #ff9900;
+	--focus-color: #ff9900;
+	--ghost-contrast: #0c0b09;
+	--faint-contrast: #3b3a39;
+	--faint-contrast-trans: #31302e;
+	--mild-contrast: #131210;
+	--comment-contrast: #898887;
+	--grid-contrast: #1a1918;
+	--button-bg-hover: #0f0e0b;
+	--success: #090806;
+	--warning: #090806;
+	--deepprevew: #000000;
+}
+
+/* 5.1 主題／HFS 核心內硬編碼的半透明色（逐項換成等價實色；8bit 啟用時同樣避讓） */
+:root:not([data-orange-filter]) body.orange-low-perf #root .file-show { background: #909090; }
+:root:not([data-orange-filter]) body.orange-low-perf.theme-dark #root .file-show { background: #7f7f7f; }
+
+/* 視頻／圖片檢視的黑底：日間 #000000cb 疊在 #dbdbdb 上 ≈ #2d2d2d，夜間為純黑 */
+:root:not([data-orange-filter]) body.orange-low-perf #root .file-show .showing-container { background: #2d2d2d !important; }
+:root:not([data-orange-filter]) body.orange-low-perf.theme-dark #root .file-show .showing-container { background: #000000 !important; }
+
+/* 核心 .highlightedText 的 #0006 文字色（夜間核心已用 #fff，不需處理） */
+:root:not([data-orange-filter]) body.orange-low-perf:not(.theme-dark) .highlightedText { color: #999999; }
+
+/* 主題半透明紅色的關閉鈕（夜間主題已用實色 #222） */
+:root:not([data-orange-filter]) body.orange-low-perf:not(.theme-dark) .dialog-closer { background-color: #bb6c6c; }
+
 
