@@ -1521,9 +1521,9 @@ button.as-text {
    以下規則全局禁用陰影、模糊與非必要動畫，以提升渲染性能。
    ============================================================ */
 
-/* 1. 全局關閉陰影 */
+/* 1. 全局關閉陰影（例外：Tree-nav 呼出小按鈕的提示光暈） */
 body.orange-low-perf,
-body.orange-low-perf *,
+body.orange-low-perf *:not(.tree-fab):not(.tree-fab-line),
 body.orange-low-perf *::before,
 body.orange-low-perf *::after {
 	box-shadow: none !important;
@@ -1549,15 +1549,23 @@ body.orange-low-perf *::after {
 	-webkit-filter: none !important;
 }
 
-/* 3. 關閉非必要動畫與過渡，減少重繪與合成層 */
+/* 3. 關閉非必要動畫與過渡，減少重繪與合成層。
+      例外：Tree-nav 的呼出小按鈕與其細線（.tree-fab / .tree-fab-line）
+      保留載入提示動畫——該動畫由外掛以行內 style 指定，這裡不能覆蓋。 */
 body.orange-low-perf,
 body.orange-low-perf *,
 body.orange-low-perf *::before,
 body.orange-low-perf *::after {
-	animation: none !important;
 	transition: none !important;
 	scroll-behavior: auto !important;
 	will-change: auto !important;
+}
+
+body.orange-low-perf,
+body.orange-low-perf *:not(.tree-fab):not(.tree-fab-line):not(.spinner),
+body.orange-low-perf *::before,
+body.orange-low-perf *::after {
+	animation: none !important;
 }
 
 /* 3.1 toast 依靠 transitionend 事件移除自己，必須保留其過渡，
