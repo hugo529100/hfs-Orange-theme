@@ -6,10 +6,10 @@ function normalizeEntries(root = document) {
     const wrapper = li.querySelector(':scope > .link-wrapper');
     if (!panel || !wrapper) return;
 
-    const outside = li.querySelector(':scope > .entry-comment');
-    if (outside) {
-      const d = panel.querySelector('.entry-details');
-      d ? panel.insertBefore(outside, d) : panel.appendChild(outside);
+    // comment 移到 panel 最後（大小/時間之後），讓它常駐在格子底部
+    const comment = li.querySelector(':scope > .entry-comment') || panel.querySelector(':scope > .entry-comment');
+    if (comment) {
+      panel.appendChild(comment);
     }
 
     const tagSpan = li.querySelector(':scope > span[style*="display: contents"]');
@@ -113,6 +113,56 @@ function ensureLowPerformanceOption() {
   }
 }
 
+/* ===== 對話框堆疊：被上層覆蓋的檔案／資料夾選單 =====
+   被覆蓋時先隱藏（省一層繪製）；上層關閉後不急著回復顯示，
+   等 300ms 讓選單自己完成關閉，避免「閃一下才消失」。
+   只改 class/顯示，不動 HFS 的對話框狀態與回調。 */
+const DIALOG_COVERED_CLASS = 'orange-dialog-covered';
+const DIALOG_REVEAL_DELAY = 300;
+let dialogRevealTimer = 0;
+let dialogRevealLayer = null;
+
+function getDialogLayers() {
+  return Array.prototype.slice.call(document.querySelectorAll('.dialog-backdrop'));
+}
+
+function cancelDialogReveal() {
+  if (dialogRevealTimer) {
+    clearTimeout(dialogRevealTimer);
+    dialogRevealTimer = 0;
+  }
+  dialogRevealLayer = null;
+}
+
+function syncDialogLayers() {
+  const layers = getDialogLayers();
+  if (!layers.length) {
+    cancelDialogReveal();
+    return;
+  }
+  const top = layers[layers.length - 1];
+
+  for (const layer of layers) {
+    if (!layer.classList.contains('file-dialog')) continue;
+
+    if (layer !== top) {
+      layer.classList.add(DIALOG_COVERED_CLASS);
+      if (dialogRevealLayer === layer) cancelDialogReveal();
+    } else if (layer.classList.contains(DIALOG_COVERED_CLASS) && dialogRevealLayer !== layer) {
+      // 剛成為最上層：延遲回復顯示
+      dialogRevealLayer = layer;
+      dialogRevealTimer = setTimeout(() => {
+        dialogRevealTimer = 0;
+        const el = dialogRevealLayer;
+        dialogRevealLayer = null;
+        if (!el || !el.isConnected) return;
+        const now = getDialogLayers();
+        if (now[now.length - 1] === el) el.classList.remove(DIALOG_COVERED_CLASS);
+      }, DIALOG_REVEAL_DELAY);
+    }
+  }
+}
+
 let scheduled = false;
 new MutationObserver(() => {
   if (scheduled) return;
@@ -121,12 +171,14 @@ new MutationObserver(() => {
     scheduled = false;
     normalizeEntries();
     ensureLowPerformanceOption();
+    syncDialogLayers();
   });
 }).observe(document.body, { childList: true, subtree: true });
 
 function initLowPerformanceMode() {
   applyLowPerformanceMode();
   ensureLowPerformanceOption();
+  syncDialogLayers();
 }
 
 if (document.readyState === 'loading') {

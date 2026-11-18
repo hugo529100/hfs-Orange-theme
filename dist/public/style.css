@@ -319,6 +319,7 @@ ul.dir li.page-separator:before {
 }
 .tiles-mode ul.dir li .entry-comment {
 	max-height: 1.1em;
+	overflow: hidden;
 	margin-bottom: -2px;
 }
 .entry-comment {
@@ -615,9 +616,18 @@ button#select-button.toggled .icon {
 	/*大圖標間距*/
 	max-width:none;
 	--tile-size: 2;
-	--name-lines: 3;
-  --name-height: calc(4.8em + var(--tile-size) * 1.6em + 1em * var(--name-lines));
-  --tile-width: calc(5em + 1.5em * var(--tile-size));
+	--name-lines: 1;
+	--name-line-height: 1.3;
+	--tile-radius: .35rem;/* 與外框一致的圓角（約 5.6px） */
+	--tile-radius-inner: calc(var(--tile-radius) - 1px);/* 內縮 1px 邊框，貼合外框 */
+	/* 圖片／圖標共用的固定媒體高度，保證整版橫縱對齊（略加大） */
+	--media-h: calc(2.55 * (2.2rem + .54rem * var(--tile-size)));
+	/* 列高：媒體 + 1 行檔名 + 資訊 + comment 行 */
+	--name-height: calc(7.0em + var(--tile-size) * 1.6em + 1em * var(--name-lines));
+	--tile-width: calc(5em + 1.5em * var(--tile-size));
+	/* hover 底色：取外層的 --bg（與 header／按鈕表面一致），
+	   避免被 HFS 核心 hover 時改寫成灰色的 ghost-contrast-alt */
+	--tile-hover-bg: var(--bg);
 }
 .tiles-mode ul.dir {
 	display:grid;
@@ -633,63 +643,160 @@ button#select-button.toggled .icon {
 	flex-direction:column;
 	/*border-bottom:1px solid #27272a;*/
 	overflow-x:clip;
-	padding:.1em 0 0;
+	padding:0 0 .12em;
 	border: 1px solid var(--grid-contrast);/*縮略圖框框*/
-	border-radius: 0.4em;
-	justify-content: space-evenly;
+	border-radius: var(--tile-radius);
+	justify-content: flex-start;
+	align-items: stretch;
+	gap: 0;
+	box-sizing: border-box;/* 讓 hover 的 min-height 與列高一致，短檔名不會長高 */
 }
-.tiles-mode ul.dir li .link-wrapper:not(:hover) {
-	/*max-height:var(--name-height);*/
-	display:block;
-	display:-webkit-box;
-	overflow:hidden;
-	-webkit-line-clamp:calc(var(--name-lines) + 1);/*文件名行數？*/
-	-webkit-box-orient:vertical;
+/* 檔名由 .entry-name 自己做 2 行 clamp；link-wrapper 不再裁切整個區塊，
+   並解除 HFS 核心在 :not(:hover) 上的 max-height / line-clamp 限制 */
+.tiles-mode ul.dir li .link-wrapper {
+	display: block !important;
+	max-height: none !important;
+	overflow: visible !important;
+	-webkit-line-clamp: unset !important;
+	-webkit-box-orient: initial !important;
+	margin: 0;
 }
 .tiles-mode ul.dir li .link-wrapper a:last-of-type {
 	padding:0;
 }
 .tiles-mode ul.dir li .link-wrapper a span {
 	display:block;
-	margin-bottom: 0.3vh;/*文件名與圖標間距*/
+	margin-bottom: 0;
 	line-height: 0.98;
 	font-size: 95%;
+}
+/* 空白的 container-folder 會產生多餘行高，讓圖標與縮圖的檔名起點對不齊，直接隱藏 */
+.tiles-mode ul.dir li .link-wrapper .container-folder {
+	display: none !important;
+}
+
+/* 檔名：單行省略；hover 才換行展開 */
+.tiles-mode ul.dir li .link-wrapper a .entry-name {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	line-height: var(--name-line-height);
+	margin-top: .12em;
+	padding: 0 .14em;
+}
+/* 大小／時間：空間不足時自動換行，避免被格子左右裁掉 */
+.tiles-mode ul.dir li .entry-details {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0 .35em;
+	width: 100%;
+	line-height: 1.2;
 }
 .tiles-mode ul.dir li .link-wrapper a .icon.icon {
     font-size: calc(2.2rem + .54rem * var(--tile-size));
 }
 .tiles-mode ul.dir li .link-wrapper a img.icon {
 	width:100%;
-	height:2.4em;/*縮略圖占比2.6撐滿2.4正常*/
+	height:var(--media-h);/*縮略圖固定高度，與圖標同一媒體框*/
 	object-fit: cover;
 	padding:0em;/*拉滿裁切*/
+	display:block;
+	top:0;/*蓋掉主題原本的 top:1px，讓縮略圖緊貼外框*/
+}
+/* 縮略圖外層：舖滿上方並裁出圓角（由外框的圓角切割左右上角） */
+.tiles-mode ul.dir li .link-wrapper a > span:not(.icon):not(.container-folder):not(.entry-name) {
+	display: block;
+	overflow: hidden;
+	border-radius: var(--tile-radius-inner) var(--tile-radius-inner) 0 0;
+}
+@supports selector(:has(*)) {
+	.tiles-mode ul.dir li .link-wrapper a > span:has(> img.icon) {
+		display: block;
+		overflow: hidden;
+		border-radius: var(--tile-radius-inner) var(--tile-radius-inner) 0 0;
+	}
+}
+/* 圖標外層（例如 Musicplayer+ 的 mmp-audio-icon-target 是 inline-block）
+   會因為基線留下約 5px 間隙，讓圖標與縮圖的檔名起點對不齊；強制 block + 0 行高 */
+.tiles-mode ul.dir li .link-wrapper a > .mmp-audio-icon-target {
+	display: block !important;
+	line-height: 0 !important;
+}
+@supports selector(:has(*)) {
+	.tiles-mode ul.dir li .link-wrapper a > span:has(> .icon) {
+		display: block !important;
+		line-height: 0 !important;
+	}
 }
 .tiles-mode ul.dir li .link-wrapper a .icon {
 	font-size:4rem;
 	display:block;
 	margin:auto;
 }
-.tiles-mode ul.dir li .link-wrapper:hover {
-	overflow:visible;
-	display:block;
-	z-index:1;
+/* 原生（字型）圖標：放進與縮略圖相同的固定媒體框，垂直居中，
+   讓整版圖片與圖標的頂端/中線對齊；加大字級但不超出框外。 */
+.tiles-mode ul.dir li .link-wrapper a .icon.icon:not(img) {
+	font-size: calc((2.2rem + .54rem * var(--tile-size)) * 1.6);
+	height: var(--media-h);
+	line-height: var(--media-h);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin: 0 auto;
 }
 .tiles-mode ul.dir li .link-wrapper:hover .icon:before {
 	text-decoration:none;
 }
+/* 抵銷 list mode 的全域 hover 內距（tiles 不需要） */
 .tiles-mode ul.dir li .link-wrapper:hover {
-	padding:0;
-	margin:0;
+	padding: 0;
+	margin: 0;
 }
 /*.tiles-mode ul.dir li:nth-of-type(odd):not(:hover) {
 background-color:#18181b
 }*/
-.tiles-mode ul.dir li:hover {/*去掉縮略圖hover的背景*/
-    --bg: none;
-}
 .tiles-mode ul.dir li .entry-panel {
-	justify-content:center;
-	font-size:10pt;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;/* 大小/時間在上，comment 貼底 */
+	gap: .08em;
+	font-size: 10pt;
+	margin-top: .1em;
+	padding: 0 .12em;
+	min-height: 1.9em;/* 預留一行 comment，讓每格底線一致 */
+}
+/* comment：固定在 panel 最底一行，單行省略、常駐可見 */
+.tiles-mode ul.dir li .entry-panel .entry-comment {
+	width: 100%;
+	max-height: 1.3em;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin: 0;
+	line-height: 1.2;
+}
+/* Short-plus 在 tiles 會把 panel 設成 flex-wrap:wrap；在 column 方向會把
+   comment 擠到第二欄而看不見。這裡強制單欄，details 全寬、comment 留在最底。 */
+body.sort-reason-active .tiles-mode ul.dir li .entry-panel {
+	flex-wrap: nowrap !important;
+}
+body.sort-reason-active .tiles-mode ul.dir li .entry-panel .entry-details {
+	flex: 0 0 auto !important;
+	width: 100%;
+	min-width: 0;
+}
+/* tiles mode（>0）comment 在大小/時間之後；list mode（tile-size 0）
+   comment 改排到大小/時間左側，避免把右側時間擠歪 */
+.list-wrapper.list-mode .entry-panel > .entry-details,
+.list-wrapper[style*="--tile-size: 0"] .entry-panel > .entry-details {
+	order: 2;
+}
+.list-wrapper.list-mode .entry-panel > .entry-comment,
+.list-wrapper[style*="--tile-size: 0"] .entry-panel > .entry-comment {
+	order: 1;
 }
 .tiles-mode ul.dir li {
 	font-size:100%;
@@ -706,7 +813,7 @@ background-color:#18181b
 
 .tiles-mode ul.dir li .link-wrapper a {
 	display:block;
-	margin:auto;
+	margin:0 auto;
 }
 
 /*禁用拖拽外框*/
@@ -717,20 +824,36 @@ background-color:#18181b
   outline: none;
 }
 
+/* hover：只有這一格向下長高，內容不重新置中（不會跳動）；
+   使用按鈕式底色，High-performance 模式下 --bg 會被換成實色 */
 .tiles-mode ul.dir li:hover {
-	/*--bg: #1717171e;*/
-	background:var(--bg);
+	height: auto;/* 內容沒超出時維持列高，不長高 */
+	min-height: calc(var(--name-height) + 2.0em);
+	align-self: start;
+	z-index: 2;/* 低於 header(3)，避免 hover 穿透 header */
+	background-color: var(--tile-hover-bg) !important;
 }
+/* 子層保持透明、且不再各自提高層級 */
 .tiles-mode ul.dir li:hover .link-wrapper,
 .tiles-mode ul.dir li:hover .entry-panel {
-	z-index:0;
-	background:var(--bg);
+	background: none !important;
+	z-index: auto;
+	padding-bottom: 0 !important;/* 蓋掉 HFS 核心 hover 追加的 .3em，避免短檔名也長高 */
+}
+/* hover 顯示完整檔名（自動換行），由格子長高承接 */
+.tiles-mode ul.dir li:hover .link-wrapper a .entry-name {
+	display: block;
+	white-space: normal;
+	overflow: visible;
+	text-overflow: clip;
+}
+/* hover 檔名不加下劃線 */
+.tiles-mode ul.dir li .link-wrapper a:hover,
+.tiles-mode ul.dir li .link-wrapper a:hover .entry-name {
+	text-decoration: none;
 }
 .tiles-mode ul.dir li:hover input[type=checkbox] {
 	z-index:3;
-}
-.tiles-mode ul.dir li:hover .entry-panel {
-	padding-bottom:.3em;
 }
 .tiles-mode .entry-size:after {
 	content:none;
@@ -1154,6 +1277,20 @@ header {
 	justify-content:center;
 	align-items:center;
 }
+/* HFS 的載入 spinner 是 🎲 emoji（.spinner.emoji-icon），
+   改用原生 CSS 圓環，避免重新整理瞬間看到骰子 */
+.spinner.emoji-icon {
+	font-size: 0 !important;      /* 隱藏 emoji 字元 */
+	color: transparent !important;
+	width: 4rem;
+	height: 4rem;
+	border: 4px solid var(--faint-contrast);
+	border-top-color: var(--text);
+	border-radius: 50%;
+	box-sizing: border-box;
+	animation: spin .85s linear infinite !important;
+	vertical-align: middle;
+}
 
 #folder-stats,
 #filter-bar>span {
@@ -1206,6 +1343,16 @@ header {
 	justify-content:center;
 	align-items:center;
 	z-index:1000;
+}
+
+/* 檔案／資料夾選單（Folder menu）被上層對話框覆蓋時先隱藏，
+   省掉一層整頁 backdrop 與選單內容的繪製。
+   只影響顯示，不動對話框狀態：選單仍在堆疊中，關閉與各動作回調照原流程運作。
+   .orange-dialog-covered 由 main.js 加上：上層關閉後延遲 300ms 才回復顯示，
+   避免選單在自行關閉前閃一下（keep-open 項目仍會正常出現）。 */
+.dialog-backdrop.file-dialog:has(~ .dialog-backdrop),
+.dialog-backdrop.file-dialog.orange-dialog-covered {
+	display: none !important;
 }
 .dialog {
 	padding:max(.5em,1vw,2vh);
