@@ -1377,12 +1377,12 @@ header {
     top: auto !important;*/
 	background-color:var(--bg);
 }
-/* 對話框外 30px 隔離帶：點在帶內空白處不會傳到 backdrop，
+/* 對話框外 25px 隔離帶：點在帶內空白處不會傳到 backdrop，
    因此不會觸發「點擊外部關閉」；帶外的空白仍可正常關閉。 */
 .dialog::before {
 	content: "";
 	position: absolute;
-	inset: -30px;
+	inset: -25px; /* 隔離帶寬度（px）：調整這個數值即可微調，例如 -30px */
 	z-index: -1;
 	pointer-events: auto;
 }
