@@ -1291,6 +1291,28 @@ header {
 	animation: spin .85s linear infinite !important;
 	vertical-align: middle;
 }
+/* getfilelist 載入時，ul.dir 內會插入一個 fa-spin6 小圖示（直接子元素），
+   原本會佔用第一個格子、擠在左上角。這裡沿用上面骰子的做法：
+   隱藏字型圖示，改成原生 CSS 圓環，放在文件列表區域中央並放大。 */
+.list-wrapper:has(> ul.dir > .spinner) {
+	position: relative;/* 讓 spinner 以文件列表區域為定位基準，而不是整個瀏覽器 */
+}
+ul.dir > .spinner {
+	font-size: 0 !important;      /* 隱藏 font-icon 字元 */
+	color: transparent !important;
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: 5rem;
+	height: 5rem;
+	border: 4px solid var(--faint-contrast);
+	border-top-color: var(--text);
+	border-radius: 50%;
+	box-sizing: border-box;
+	animation: spin .85s linear infinite !important;
+	z-index: 20;
+	pointer-events: none;
+}
 
 #folder-stats,
 #filter-bar>span {

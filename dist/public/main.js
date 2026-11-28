@@ -163,6 +163,30 @@ function syncDialogLayers() {
   }
 }
 
+/* ===== 列表載入 spinner：置中於「可見的文件區域」 =====
+   CSS 會把 getfilelist 的 fa-spin6 換成圓環；這裡再依 list-wrapper
+   與視窗的交集算出中心，避免它落在整個瀏覽器中央（含 header 上方）。 */
+function positionListSpinner() {
+  const spinner = document.querySelector('ul.dir > .spinner');
+  if (!spinner) return;
+  const wrapper = spinner.closest('.list-wrapper');
+  const wr = wrapper ? wrapper.getBoundingClientRect() : null;
+  const top = Math.max(0, wr ? wr.top : 0);
+  const bottom = Math.min(window.innerHeight, wr ? wr.bottom : window.innerHeight);
+  const left = Math.max(0, wr ? wr.left : 0);
+  const right = Math.min(window.innerWidth, wr ? wr.right : window.innerWidth);
+  const cs = getComputedStyle(spinner);
+  const w = parseFloat(cs.width) || 0;
+  const h = parseFloat(cs.height) || 0;
+  spinner.style.position = 'fixed';
+  spinner.style.inset = 'auto';
+  spinner.style.left = ((left + right) / 2) + 'px';
+  spinner.style.top = ((top + bottom) / 2) + 'px';
+  spinner.style.margin = '0';
+  spinner.style.marginLeft = (-w / 2) + 'px';
+  spinner.style.marginTop = (-h / 2) + 'px';
+}
+
 let scheduled = false;
 new MutationObserver(() => {
   if (scheduled) return;
@@ -172,8 +196,11 @@ new MutationObserver(() => {
     normalizeEntries();
     ensureLowPerformanceOption();
     syncDialogLayers();
+    positionListSpinner();
   });
 }).observe(document.body, { childList: true, subtree: true });
+window.addEventListener('resize', positionListSpinner, { passive: true });
+window.addEventListener('scroll', positionListSpinner, { passive: true, capture: true });
 
 function initLowPerformanceMode() {
   applyLowPerformanceMode();
